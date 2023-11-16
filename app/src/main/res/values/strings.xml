@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Demo Application</string>
+    <string name="blank_activity_title">Blank Activity</string>
+    <string name="events_activity_title">Events Activity</string>
+    <string name="eventName">Event name goes here</string>
+    <string name="eventDepartment">Event department goes here</string>
+    <string name="eventLocation">Event location goes here</string>
+    <string name="eventTime">Event time goes here</string>
+    <string name="eventDescription">Event description goes here</string>
+    <string name="rsvp_switch_text">I want to know about the latest updates!</string>
+    <string name="attend_switch_text">I want to attend this event!</string>
+    <string name="prev_event_text">«</string>
+    <string name="next_event_text">»</string>
+</resources>
