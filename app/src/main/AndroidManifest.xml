@@ -32,6 +32,20 @@
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
 
+        <activity android:name=".RegisterActivity" />
+
+        <activity
+            android:name=".AdminLoginActivity"
+            android:label="Admin Login">
+        </activity>
+
+        <activity
+            android:name=".CreateEventActivity"
+            android:label="Create Event">
+        </activity>
+
+        <activity android:name=".AdminHomeActivity" />
+
     </application>
 
 </manifest>

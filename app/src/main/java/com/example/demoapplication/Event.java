@@ -1,6 +1,6 @@
 package com.example.demoapplication;
 
-public class Announcement {
+public class Event {
     private int maxLimit;
     private String date;
     private String time;
@@ -11,24 +11,25 @@ public class Announcement {
     private int numRatings;
     private String department;
 
-    public Announcement() {
-        // Default constructor required for calls to DataSnapshot.getValue(Announcement.class)
+    public Event() {
     }
 
-    public Announcement(String name, String data, String time, String location, String department, String description, int maxLimit, float averageRating, int numRatings) {
-        this.maxLimit = maxLimit;
+    public Event(String name, String data, String time, String location, String department, String description, int maxLimit, float averageRating, int numRatings) {
+        this.name = name;
         this.date = date;
         this.time = time;
         this.location = location;
-        this.name = name;
+        this.department = department;
         this.description = description;
+        this.maxLimit = maxLimit;
         this.averageRating = averageRating;
         this.numRatings = numRatings;
-        this.department = department;
     }
 
-    public int getMaxLimit() {
-        return maxLimit;
+
+
+    public String getName() {
+        return name;
     }
 
     public String getDate() {
@@ -43,12 +44,16 @@ public class Announcement {
         return location;
     }
 
-    public String getName() {
-        return name;
+    public String getDepartment() {
+        return department;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public int getMaxLimit() {
+        return maxLimit;
     }
 
     public float getAverageRating() {
@@ -59,7 +64,5 @@ public class Announcement {
         return numRatings;
     }
 
-    public String getDepartment() {
-        return department;
-    }
+
 }
