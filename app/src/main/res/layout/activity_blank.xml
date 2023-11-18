@@ -6,7 +6,6 @@
     android:gravity="center">
 
     <!-- Add UI elements for StudentActivity here -->
-
     <Button
         android:id="@+id/studentPostButton"
         android:layout_width="match_parent"
