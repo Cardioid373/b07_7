@@ -1,63 +1,56 @@
-<!-- res/layout/activity_login.xml -->
+<!-- res/layout/activity_admin_login.xml -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".AdminLoginActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewAdmin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login:"
+        android:text="Admin Login Below:"
         android:textAlignment="center"
         android:textSize="34sp" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="36dp" />
+        android:layout_height="20dp" />
 
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/adminEmailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="Admin Username"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/adminPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="Admin Password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/adminLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Admin Login"
+        android:layout_marginTop="20dp"/>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="54dp" />
+        android:layout_height="20dp" />
 
     <Button
-        android:id="@+id/btnGoToRegister"
+        android:id="@+id/btnGoBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="Go Back" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="85dp" />
-
-    <Button
-        android:id="@+id/btnAdminLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Admin Login" />
 
 </LinearLayout>

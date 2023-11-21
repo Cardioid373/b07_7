@@ -22,40 +22,36 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+    private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        FirebaseApp.initializeApp(this);
-        User user1 = new User("hi");
+        setContentView(R.layout.activity_main);
 
-// Add user1 data to the database
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
-        databaseReference.child("user1").setValue(user1);
-
-        // Initialize Firebase Database
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
-
-        FirebaseDatabase db = FirebaseDatabase.getInstance("https://b07data-default-rtdb.firebaseio.com/");
+        Button btnGoToRegister = findViewById(R.id.btnGoToRegister);
         EditText getEmail = findViewById(R.id.emailEditText);
         EditText getPassword = findViewById(R.id.passwordEditText);
         Button btnLogin = findViewById(R.id.loginButton);
+        btnGoToRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+            }
+        });
 
-        // Initialize Firebase Database
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        Button btnAdminLogin = findViewById(R.id.btnAdminLogin);
+        btnAdminLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AdminLoginActivity.class));
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Retrieve entered email and password
-                String email = getEmail.getText().toString();
-                String password = getPassword.getText().toString();
-
-                // Check if the user exists in the database
-                checkUser(email, password);
+                checkUser(getEmail.getText().toString(), getPassword.getText().toString());
             }
         });
     }
@@ -66,27 +62,19 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(email).exists()) {
                     String storedPassword = dataSnapshot.child(email).child("password").getValue(String.class);
-
                     if (password.equals(storedPassword)) {
-                        // Login successful
-                        Log.d("LoginActivity", "Login successful");
                         Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, BlankActivity.class));
-                    } else {
-                        // Incorrect password
-                        Log.d("LoginActivity", "Incorrect password");
-                        Toast.makeText(MainActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(MainActivity.this, "Incorrect user or password", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // User does not exist
-                    Log.d("LoginActivity", "User does not exist");
-                    Toast.makeText(MainActivity.this, "User does not exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Incorrect user or password", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database error
                 Log.e("LoginActivity", "Database Error: " + databaseError.getMessage());
                 Toast.makeText(MainActivity.this, "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
