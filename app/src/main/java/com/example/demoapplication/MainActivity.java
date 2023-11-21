@@ -11,8 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demoapplication.BlankActivity;
-import com.example.demoapplication.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         // Login successful
                         Log.d("LoginActivity", "Login successful");
                         Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this, BlankActivity.class));
+                        startActivity(new Intent(MainActivity.this, StudentActivity.class));
                     } else {
                         // Incorrect password
                         Log.d("LoginActivity", "Incorrect password");
