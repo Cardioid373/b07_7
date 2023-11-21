@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Demo Application</string>
     <string name="blank_activity_title">Blank Activity</string>
+
+    <string name="POST_intro_msg">
+        Check if you qualify for POST. Select a program:
+    </string>
+
+    <!-- button names for POST fragment -->
+    <string name="CS_Major_opt">Computer Science Major</string>
+    <string name="Stats_Major_opt">Statistics Major</string>
+    <string name="Math_Major_opt">Math Major</string>
+    <string name="CS_Minor_opt">Computer Science Minor</string>
+    <string name="Math_Minor_opt">Math Minor</string>
+    <string name="Stats_Minor_opt">Statistics Minor</string>
 </resources>
