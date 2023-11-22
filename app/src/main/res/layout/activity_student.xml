@@ -1,33 +1,33 @@
-<!-- res/layout/activity_blank.xml -->
+<!-- res/layout/activity_student.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
 
-    <!-- Add UI elements for BlankActivity here -->
+    <!-- Add UI elements for StudentActivity here -->
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/studentPostButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Post" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/studentEventsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Events" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/studentComplaintsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Make us better" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/studentLogoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Log out" />
 </LinearLayout>
