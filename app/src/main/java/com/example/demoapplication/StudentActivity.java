@@ -15,14 +15,15 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        Button btnComplaints = findViewById(R.id.complaintsButton);
-        Button btnLogout = findViewById(R.id.logoutButton);
+        Button btnComplaints = findViewById(R.id.studentComplaintsButton);
+        Button btnLogout = findViewById(R.id.studentLogoutButton);
 
         btnComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Jump to complaints page
                 startActivity(new Intent(StudentActivity.this, StudentComplaintsActivity.class));
+                finish();
             }
         });
 
@@ -31,6 +32,7 @@ public class StudentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Return to login page
                 startActivity(new Intent(StudentActivity.this, MainActivity.class));
+                finish();
                 Toast.makeText(StudentActivity.this, "Logout successful!", Toast.LENGTH_SHORT).show();
             }
         });
