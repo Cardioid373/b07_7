@@ -14,15 +14,16 @@ public class StudentComplaintsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaints);
 
-        Button btnNewComplaint = findViewById(R.id.newComplaintButton);
-        Button btnPastComplaints = findViewById(R.id.pastComplaintsButton);
-        Button btnComplaintsBack = findViewById(R.id.complaintsBackButton);
+        Button btnNewComplaint = findViewById(R.id.studentNewComplaintButton);
+        Button btnPastComplaints = findViewById(R.id.studentPastComplaintsButton);
+        Button btnComplaintsBack = findViewById(R.id.studentComplaintsBackButton);
 
         btnNewComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Jump to write new complaint page
                 startActivity(new Intent(StudentComplaintsActivity.this, StudentNewComplaintActivity.class));
+                finish();
             }
         });
 
@@ -31,6 +32,7 @@ public class StudentComplaintsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Jump to past complaints page
                 startActivity(new Intent(StudentComplaintsActivity.this, StudentPastComplaintsActivity.class));
+                finish();
             }
         });
 
@@ -39,6 +41,7 @@ public class StudentComplaintsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Return to student page
                 startActivity(new Intent(StudentComplaintsActivity.this, StudentActivity.class));
+                finish();
             }
         });
     }

@@ -7,22 +7,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class StudentNewComplaintActivity extends AppCompatActivity {
 
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("complaints");
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_complaint);
-        FirebaseApp.initializeApp(this);
+        databaseReference = FirebaseDatabase.getInstance().getReference("complaints");
 
 
         EditText getNewComplaintSubject = findViewById(R.id.newComplaintSubjectText);
@@ -37,9 +40,18 @@ public class StudentNewComplaintActivity extends AppCompatActivity {
                 String complaint = getNewComplaint.getText().toString();
                 String subject = getNewComplaintSubject.getText().toString();
                 Complaints newComplaint = new Complaints(complaint);
-                databaseReference.child(subject).setValue(newComplaint);
-                Toast.makeText(StudentNewComplaintActivity.this, "Submission Successful!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(StudentNewComplaintActivity.this, StudentComplaintsActivity.class));
+                databaseReference.child(subject).setValue(newComplaint, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError error, DatabaseReference ref) {
+                        if(error == null) {
+                            Toast.makeText(StudentNewComplaintActivity.this, "Submission Successful!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(StudentNewComplaintActivity.this, StudentComplaintsActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(StudentNewComplaintActivity.this, "Submission Failed!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 
@@ -48,6 +60,7 @@ public class StudentNewComplaintActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Return to complaints page
                 startActivity(new Intent(StudentNewComplaintActivity.this, StudentComplaintsActivity.class));
+                finish();
             }
         });
     }
