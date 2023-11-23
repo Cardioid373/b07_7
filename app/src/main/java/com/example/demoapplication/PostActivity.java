@@ -18,49 +18,49 @@ public class PostActivity extends AppCompatActivity {
         Button csMajorButton = findViewById(R.id.CSMajorButton);
         Button csMinorButton = findViewById(R.id.CSMinorButton);
         Button mathMajorButton = findViewById(R.id.MathMajorButton);
-        Button mathMinorButton = findViewById(R.id.MathMinorButton);
+        Button mathMinorButton = findViewById(R.id.MathSpecialistButton);
         Button statsMajorButton = findViewById(R.id.StatsMajorButton);
-        Button statsMinorButton = findViewById(R.id.StatsMinorButton);
+        Button statsMinorButton = findViewById(R.id.StatsSpecialistButton);
 
         csMajorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new postQuestions());
+                navigateToFragment(new admission_check());
             }
         });
 
         csMinorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new postQuestions());
+                navigateToFragment(new admission_check());
             }
         });
 
         mathMajorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new postQuestions());
+                navigateToFragment(new admission_check());
             }
         });
 
         mathMinorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new postQuestions());
+                navigateToFragment(new admission_check());
             }
         });
 
         statsMajorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new postQuestions());
+                navigateToFragment(new admission_check());
             }
         });
 
         statsMinorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new postQuestions());
+                navigateToFragment(new admission_check());
             }
         });
     }

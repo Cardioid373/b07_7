@@ -12,7 +12,7 @@
         android:layout_height="54dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="160dp"
-        android:text="CS Major/Specialist"
+        android:text="@string/CS_Major_opt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -21,7 +21,7 @@
         android:layout_width="204dp"
         android:layout_height="52dp"
         android:layout_marginBottom="160dp"
-        android:text="CS Minor"
+        android:text="@string/CS_Minor_opt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -29,50 +29,63 @@
         android:id="@+id/MathMajorButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Math Major"
+        android:text="@string/Math_Major_opt"
         android:layout_marginBottom="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/MathMinorButton"
+        app:layout_constraintEnd_toStartOf="@+id/MathSpecialistButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/MathMinorButton"
+        android:id="@+id/MathSpecialistButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Math Minor"
+        android:text="@string/Math_Specialist_opt"
         android:layout_marginBottom="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/MathMajorButton" />
 
     <Button
-        android:id="@+id/StatisticsMajorButton"
+        android:id="@+id/StatsMajorButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Statistics Major"
+        android:text="@string/Stats_Major_opt"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/StatsMinorButton"
+        app:layout_constraintEnd_toStartOf="@+id/StatsSpecialistButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/StatsMinorButton"
+        android:id="@+id/StatsSpecialistButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Statistics Minor"
+        android:text="@string/Stats_Specialist_opt"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/StatisticsMajorButton" />
+        app:layout_constraintStart_toEndOf="@+id/StatsMajorButton" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/postBackButton"
         android:layout_width="404dp"
         android:layout_height="64dp"
-        android:text="Button"
+        android:text="@string/BackButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/questions_container"
+        android:layout_width="0dp"
+        android:layout_height="515dp"
+        app:layout_constraintBottom_toBottomOf="@+id/postBackButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
