@@ -1,13 +1,10 @@
 package com.example.demoapplication;
 
-public class User {
+public class Admin {
     private String password;
-
-    public User() {
-
+    public Admin() {
     }
-
-    public User(String password) {
+    public Admin(String password) {
         this.password = password;
     }
 
