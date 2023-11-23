@@ -14,7 +14,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, String data, String time, String location, String department, String description, int maxLimit, float averageRating, int numRatings) {
+    public Event(String name, String date, String time, String location, String department, String description, int maxLimit, float averageRating, int numRatings) {
         this.name = name;
         this.date = date;
         this.time = time;
