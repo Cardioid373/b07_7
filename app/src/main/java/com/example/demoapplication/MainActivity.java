@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    static String currentUser;
+
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (password.equals(storedPassword)) {
                         // Login successful
+                        currentUser = email;
                         Log.d("LoginActivity", "Login successful");
                         Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, EventsActivity.class));

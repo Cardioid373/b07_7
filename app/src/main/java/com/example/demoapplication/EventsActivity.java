@@ -1,9 +1,8 @@
 package com.example.demoapplication;
 
-import android.media.metrics.Event;
+import static com.example.demoapplication.MainActivity.currentUser;
+
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -14,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.example.demoapplication.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,11 +20,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class EventsActivity extends AppCompatActivity {
 
     FirebaseDatabase db;
+    DatabaseReference eventsRef;
 
     private TextView eventName;
     private TextView eventDepartment;
@@ -39,15 +37,19 @@ public class EventsActivity extends AppCompatActivity {
     private Button rightButton;
     private Button rightNoLeftButton;
 
-    static ArrayList<String> eventNames = new ArrayList<String>(Collections.singleton("@string/eventName"));
-    static ArrayList<String> eventDepartments = new ArrayList<String>(Collections.singleton("@string/eventName"));
-    static ArrayList<String> eventLocations = new ArrayList<String>(Collections.singleton("@string/eventName"));
-    static ArrayList<String> eventDates = new ArrayList<String>(Collections.singleton("@string/eventName"));
-    static ArrayList<String> eventTimes = new ArrayList<String>(Collections.singleton("@string/eventName"));
-    static ArrayList<String> eventDescriptions = new ArrayList<String>(Collections.singleton("@string/eventName"));
+    private ArrayList<String> eventNames;
+    private ArrayList<String> eventDepartments;
+    private ArrayList<String> eventLocations;
+    private ArrayList<String> eventDates;
+    private ArrayList<String> eventTimes;
+    private ArrayList<String> eventDescriptions;
+    private ArrayList<Integer> eventMaxLimits;
 
     int eventIndex;
     int eventsTotal;
+    int nextChronologicalEventIndex;
+    int currentEventCapacity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,46 +75,30 @@ public class EventsActivity extends AppCompatActivity {
         attendSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                goToEventIndex(eventIndex);
                 if (b) {
-                    /* this section will request to attend
-                     *
-                     * comments:
-                     *  - show capacity of event on attendSwitch e.g. I want to attend this event! (Attendees: 34/90)
-                     *  - database children that store the values in above example?
-                     *  - store individual users/usernames and count the length for the first value?
-                     *  - where/how exactly to store users/usernames?
-                     *  - send user a notification confirming spot at the event?
-                     *
-                     * temporary toast msg below
-                     */
-                    Toast.makeText(EventsActivity.this, "requesting to attend", Toast.LENGTH_SHORT).show();
+                    if (currentEventCapacity < eventMaxLimits.get(eventIndex)) {
+                        eventsRef.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").setValue("");
+                        Toast.makeText(EventsActivity.this, "You have secured a spot at " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(EventsActivity.this, eventNames.get(eventIndex) + " is full, sorry!", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    /* this section will cancel attendance
-                     *
-                     * temporary toast msg below
-                     */
-                    Toast.makeText(EventsActivity.this, "cancelling attendance", Toast.LENGTH_SHORT).show();
+                    eventsRef.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).removeValue();
+                    Toast.makeText(EventsActivity.this, "You are not going to " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
                 }
+                goToEventIndex(eventIndex);
             }
         });
         rsvpSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    /* this section will request rsvp
-                     *
-                     * comments:
-                     *  - related to story 4, look to discuss this soon
-                     *
-                     * temporary toast msg below
-                     */
-                    Toast.makeText(EventsActivity.this, "requesting rsvp", Toast.LENGTH_SHORT).show();
+                    eventsRef.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).setValue(currentUser);
+                    Toast.makeText(EventsActivity.this, "You will be notified of any updates to " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
                 } else {
-                    /* this section will cancel rsvp
-                     *
-                     * temporary toast msg below
-                     */
-                    Toast.makeText(EventsActivity.this, "cancelling rsvp", Toast.LENGTH_SHORT).show();
+                    eventsRef.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).removeValue();
+                    Toast.makeText(EventsActivity.this, "You will not be notified of changes to " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -144,29 +130,42 @@ public class EventsActivity extends AppCompatActivity {
 
     private void refreshEvents(Boolean returnToPresent) {
         db = FirebaseDatabase.getInstance("https://b07data-default-rtdb.firebaseio.com/");
-        DatabaseReference eventRef = db.getReference().child("events");
-        eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                    @Override
-                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                        // Get details from snapshot
-                                                        eventNames = collectEventDetails(snapshot, "name");
-                                                        eventDepartments = collectEventDetails(snapshot, "department");
-                                                        eventLocations = collectEventDetails(snapshot, "location");
-                                                        eventDates = collectEventDetails(snapshot, "date");
-                                                        eventTimes = collectEventDetails(snapshot, "time");
-                                                        eventDescriptions = collectEventDetails(snapshot, "description");
-                                                        eventsTotal = eventNames.size();
-                                                        if (returnToPresent) {
-                                                            eventIndex = 0; // will be set to nearest event if chronological sorting is finished
-                                                            goToEventIndex(eventIndex);
-                                                        }
-                                                    }
+        eventsRef = db.getReference().child("events");
+        eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    // Get details from snapshot
+                    eventNames = collectEventDetails(snapshot, "name");
+                    eventDepartments = collectEventDetails(snapshot, "department");
+                    eventLocations = collectEventDetails(snapshot, "location");
+                    eventDates = collectEventDetails(snapshot, "date");
+                    eventTimes = collectEventDetails(snapshot, "time");
+                    eventDescriptions = collectEventDetails(snapshot, "description");
+                    ArrayList<Integer> temp = new ArrayList<Integer>();
+                    for (DataSnapshot event : snapshot.getChildren()) {
+                        temp.add(event.child("maxLimit").getValue(Integer.class));
+                    }
+                    eventMaxLimits = temp;
+                    eventsTotal = eventNames.size();
 
-                                                    @Override
-                                                    public void onCancelled(@NonNull DatabaseError error) {
-                                                        // section to handle error (will look into this later)
-                                                    }
-                                                }
+                    if (returnToPresent) {
+                        nextChronologicalEventIndex = 0; // will be set to nearest event once chronological sorting is finished
+                        eventIndex = nextChronologicalEventIndex;
+                        goToEventIndex(eventIndex);
+                    }
+                    /*ArrayList<String> testArrayList = new ArrayList<String>();
+                    testArrayList.add("string number one");
+                    testArrayList.add("this is the second string");
+                    eventRef.child("testArrayList").removeValue();
+                    eventRef.child("testArrayList").child("42").child("rating").setValue(5);
+                    eventRef.child("testArrayList").child("42").child("review").setValue("amazing");*/
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // section to handle error (will look into this later)
+                }
+            }
 
         );
 
@@ -175,8 +174,8 @@ public class EventsActivity extends AppCompatActivity {
     @NonNull
     private ArrayList<String> collectEventDetails(DataSnapshot events, String detail) {
         ArrayList<String> list = new ArrayList<String>();
-        for (DataSnapshot snapshot : events.getChildren()) {
-            list.add(snapshot.child(detail).getValue(String.class));
+        for (DataSnapshot event : events.getChildren()) {
+            list.add(event.child(detail).getValue(String.class));
         }
         return list;
     }
@@ -244,6 +243,33 @@ public class EventsActivity extends AppCompatActivity {
         }
 
         // set state of the switches based off of student's choice
+        // set text of the attendSwitch based off of capacity
+        eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).getValue() == null) {
+                    attendSwitch.setChecked(false);
+                } else {
+                    attendSwitch.setChecked(true);
+                }
+                if (snapshot.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).getValue() == null) {
+                    rsvpSwitch.setChecked(false);
+                } else {
+                    rsvpSwitch.setChecked(true);
+                }
+
+                currentEventCapacity = 0;
+                for (DataSnapshot child : snapshot.child(eventNames.get(eventIndex)).child("attendees").getChildren()) {
+                    currentEventCapacity++;
+                }
+                attendSwitch.setText("I want to attend this event! (" + currentEventCapacity + "/" + eventMaxLimits.get(eventIndex) + ")");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }
