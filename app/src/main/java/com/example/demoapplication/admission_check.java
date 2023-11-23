@@ -51,5 +51,4 @@ public class admission_check extends Fragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
 }
