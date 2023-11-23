@@ -18,54 +18,58 @@ public class PostActivity extends AppCompatActivity {
         Button csMajorButton = findViewById(R.id.CSMajorButton);
         Button csMinorButton = findViewById(R.id.CSMinorButton);
         Button mathMajorButton = findViewById(R.id.MathMajorButton);
-        Button mathMinorButton = findViewById(R.id.MathSpecialistButton);
+        Button mathSpecialistButton = findViewById(R.id.MathSpecialistButton);
         Button statsMajorButton = findViewById(R.id.StatsMajorButton);
-        Button statsMinorButton = findViewById(R.id.StatsSpecialistButton);
+        Button statsSpecialistButton = findViewById(R.id.StatsSpecialistButton);
 
         csMajorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new admission_check());
+                navigateToFragment(new admission_check(), getString(R.string.CSq1));
             }
         });
 
         csMinorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new admission_check());
+                navigateToFragment(new admission_check(), getString(R.string.CSq1));
             }
         });
 
         mathMajorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new admission_check());
+                navigateToFragment(new admission_check(), getString(R.string.Mathq1));
             }
         });
 
-        mathMinorButton.setOnClickListener(new View.OnClickListener() {
+        mathSpecialistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new admission_check());
+                navigateToFragment(new admission_check(), getString(R.string.Mathq1));
             }
         });
 
         statsMajorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new admission_check());
+                navigateToFragment(new admission_check(), getString(R.string.Statsq1));
             }
         });
 
-        statsMinorButton.setOnClickListener(new View.OnClickListener() {
+        statsSpecialistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToFragment(new admission_check());
+                navigateToFragment(new admission_check(), getString(R.string.Statsq1));
             }
         });
     }
 
-    private void navigateToFragment(Fragment fragment) {
+    private void navigateToFragment(Fragment fragment, String questionText) {
+        Bundle bundle = new Bundle();
+        bundle.putString("questionText", questionText);
+        fragment.setArguments(bundle);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.questions_container, fragment);
