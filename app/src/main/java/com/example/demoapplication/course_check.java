@@ -4,52 +4,120 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class course_check extends Fragment {
+
+    private TextView firstQuestion;
+    private TextView secondQuestion;
+    private Button yesButton;
+    private Button noButton;
+    private Button yesButton2;
+    private Button noButton2;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.course_check, container, false);
 
         // Retrieve information from arguments
-        String questionText = getArguments().getString("questionText", "");
-        String buttonClicked = getArguments().getString("buttonClicked", "");
-        boolean answer = getArguments().getBoolean("answer", false);
+        String questionText = getArguments().getString("questionText", ""); // admission question
+        String programChosen = getArguments().getString("programChosen", ""); // program the user chose
+        boolean admitted = getArguments().getBoolean("answer", false); // yes or no for admission
 
-        TextView questionTextView = view.findViewById(R.id.quest);
-        questionTextView.setText(R.string.MathMajorAdmittedReq1);
+        // Display question based on program chosen
+        firstQuestion = view.findViewById(R.id.quest);
+        secondQuestion = view.findViewById(R.id.quest2);
+        yesButton = view.findViewById(R.id.yesOne);
+        noButton = view.findViewById(R.id.noOne);
+        yesButton2 = view.findViewById(R.id.yesTwo);
+        noButton2 = view.findViewById(R.id.noTwo);
 
-        /* Handle Yes or No Answers
-        Button yesButton = view.findViewById(R.id.yesButton);
-        Button noButton = view.findViewById(R.id.noButton);
+        // HANDLE WHICH QUESTIONS ARE DISPLAYED FOR CHOSEN PROGRAM
+        if(programChosen.equals("mathMajor")){
+            if(admitted) {
+                firstQuestion.setText(R.string.MathMajorAdmittedReq1);
+                secondQuestion.setText(R.string.MathMajorAdmittedReq2);
+            }
+            else {
+                firstQuestion.setText(R.string.MathNotAdmittedRec1);
+                hideQuestion();
+            }
+        }
+        else if(programChosen.equals("mathSpecialist")) {
+            if(admitted) {
+                firstQuestion.setText(R.string.MathSpecialistAdmittedRec1);
+                secondQuestion.setText(R.string.MathSpecialistAdmittedReq2);
+            }
+            else {
+                firstQuestion.setText(R.string.MathNotAdmittedRec1);
+                hideQuestion();
+            }
+        }
+        else if(programChosen.equals("statsMajor")) {
+            if(admitted) {
+                firstQuestion.setText(R.string.StatsMajorAdmittedReq1);
+            }
+            else {
+                firstQuestion.setText(R.string.StatsMajorNotAdmittedReq1);
+            }
+            hideQuestion();
+        }
+        else if(programChosen.equals("statsSpecialist")) {
+            if(admitted) {
+                firstQuestion.setText(R.string.StatsSpecialistAdmittedReq1);
+            }
+            else {
+                firstQuestion.setText(R.string.StatsSpecialistNotAdmittedReq1);
+            }
+            hideQuestion();
+        }
+        else if(programChosen.equals("csMajor")) {
+            firstQuestion.setText(R.string.CSMajorReq1);
+            secondQuestion.setText(R.string.CSMajorReq2);
+        }
+        else if(programChosen.equals("csMinor")) {
+            firstQuestion.setText(R.string.CSMinorReq1);
+            hideQuestion();
+        }
 
+        // HANDLE YES OR NO BUTTONS TO QUESTIONS
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Handle "Yes" button click based on buttonClicked and answer
-                handleYesButtonClick(buttonClicked, answer);
+                // Handle "Yes" button click based on programChosen and answer
+                handleYesButtonClick(programChosen, admitted);
             }
         });
 
         noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Handle "No" button click based on buttonClicked and answer
-                handleNoButtonClick(buttonClicked, answer);
+                // Handle "No" button click based on programChosen and answer
+                handleNoButtonClick(programChosen, admitted);
             }
-        });*/
+        });
 
         return view;
     }
-    /*private void handleYesButtonClick(String buttonClicked, boolean answer) {
+    private void handleYesButtonClick(String programChosen, boolean admitted) {
 
     }
 
-    private void handleNoButtonClick(String buttonClicked, boolean answer) {
+    private void handleNoButtonClick(String programChosen, boolean admitted) {
 
-    }*/
+    }
+
+    // This hides the buttons for the second question if there's only one POST requirement
+    private void hideQuestion() {
+        firstQuestion.setVisibility(View.VISIBLE);
+        secondQuestion.setVisibility(View.GONE);
+        yesButton2.setVisibility(View.GONE);
+        noButton2.setVisibility(View.GONE);
+    }
+
 
 }

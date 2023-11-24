@@ -18,7 +18,7 @@ public class admission_check extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.admission_check, container, false);
 
-        // store arguments from PostActivity
+        // retrieve arguments from PostActivity
         String questionText = getArguments().getString("questionText", "");
         String programChosen = getArguments().getString("programChosen", "");
 
@@ -52,7 +52,7 @@ public class admission_check extends Fragment {
         // Pass information to the course_check fragment
         Bundle bundle = new Bundle();
         bundle.putString("questionText", questionText);
-        bundle.putString("buttonClicked", programChosen);
+        bundle.putString("programChosen", programChosen);
         bundle.putBoolean("answer", answer);
         nextFragment.setArguments(bundle);
 

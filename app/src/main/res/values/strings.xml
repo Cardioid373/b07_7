@@ -14,7 +14,7 @@
     <string name="Math_Specialist_opt">Math Specialist</string>
     <string name="Stats_Specialist_opt">Statistics Specialist</string>
 
-    <!-- Questions for POST (note: rename these later)-->
+    <!-- POST QUESTIONS -->
     <string name="CSq1">
         Were you admitted to first year Computer Science?
     </string>
@@ -23,6 +23,23 @@
     </string>
     <string name="Mathq1">
         Were you admitted to first year Math?
+    </string>
+    
+    <!-- CS POST REQUIREMENTS -->
+    <string name="CSMajorReq1">
+        Have you passed CSCA08 and gotten a GPA of at least 2.5
+        over the following courses: CSCA48H3, CSC/MATA67H3,
+        MATA22H3, MATA31H3, and MATA37H3
+    </string>
+    <string name="CSMajorReq2">
+        Did you get a final grade of at least a B in CSCA48H3. And did
+        you get a final grade of at least C- in two of these:
+        CSC/MATA67H3, MATA22H3, and MATA37H3
+    </string>
+    <string name="CSMinorReq1">
+        Have you completed 4.0 credits, and passed CSCA08H3,
+        CSCA48H3, and one of these: [CSCA67H3, MATA67H3, MATA22H3, MATA23H3,
+        MATA30H3, MATA31H3, or [(MATA32H3) or MATA34H3]
     </string>
 
     <!-- MATH POST REQUIREMENTS -->
