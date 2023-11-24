@@ -21,6 +21,7 @@ public class PostActivity extends AppCompatActivity {
         Button mathSpecialistButton = findViewById(R.id.MathSpecialistButton);
         Button statsMajorButton = findViewById(R.id.StatsMajorButton);
         Button statsSpecialistButton = findViewById(R.id.StatsSpecialistButton);
+        Button postBackButton = findViewById(R.id.postBackButton);
 
         csMajorButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +62,13 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsSpecialist");
+            }
+        });
+
+        postBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
