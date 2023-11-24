@@ -85,33 +85,10 @@ public class course_check extends Fragment {
         }
 
         // HANDLE YES, NO AND ENTER BUTTONS TO QUESTIONS
-        yesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                answer1 = true;
-            }
-        });
-
-        noButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                answer1 = false;
-            }
-        });
-
-        yesButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                answer2 = true;
-            }
-        });
-
-        noButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                answer2 = false;
-            }
-        });
+        yesButton.setOnClickListener(v -> answer1 = true);
+        noButton.setOnClickListener(v -> answer1 = false);
+        yesButton2.setOnClickListener(v -> answer2 = true);
+        noButton2.setOnClickListener(v -> answer2 = false);
 
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override

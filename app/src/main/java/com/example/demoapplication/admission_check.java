@@ -28,20 +28,9 @@ public class admission_check extends Fragment {
         // Handle Yes or No Answers
         Button yesButton = view.findViewById(R.id.yesButton);
         Button noButton = view.findViewById(R.id.noButton);
-        yesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToNextFragment(programChosen, true);
-            }
-        });
 
-        noButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToNextFragment(programChosen, false);
-            }
-        });
-
+        yesButton.setOnClickListener(v -> navigateToNextFragment(programChosen, true));
+        noButton.setOnClickListener(v -> navigateToNextFragment(programChosen, false));
         return view;
     }
 

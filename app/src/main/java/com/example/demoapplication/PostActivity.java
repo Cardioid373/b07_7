@@ -1,7 +1,6 @@
 package com.example.demoapplication;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,54 +22,13 @@ public class PostActivity extends AppCompatActivity {
         Button statsSpecialistButton = findViewById(R.id.StatsSpecialistButton);
         Button postBackButton = findViewById(R.id.postBackButton);
 
-        csMajorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFragment(new admission_check(), getString(R.string.CSq1), "csMajor");
-            }
-        });
-
-        csMinorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFragment(new admission_check(), getString(R.string.CSq1), "csMinor");
-            }
-        });
-
-        mathMajorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathMajor");
-            }
-        });
-
-        mathSpecialistButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathSpecialist");
-            }
-        });
-
-        statsMajorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsMajor");
-            }
-        });
-
-        statsSpecialistButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsSpecialist");
-            }
-        });
-
-        postBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        csMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.CSq1), "csMajor"));
+        csMinorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.CSq1), "csMinor"));
+        mathMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathMajor"));
+        mathSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathSpecialist"));
+        statsMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsMajor"));
+        statsSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsSpecialist"));
+        postBackButton.setOnClickListener(view -> finish());
     }
 
     private void navigateToFragment(Fragment fragment, String questionText, String programChosen) {
