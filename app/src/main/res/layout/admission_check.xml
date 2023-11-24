@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/csAdmissionCheck"
+            android:id="@+id/admissionCheck"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="@string/CSq1"

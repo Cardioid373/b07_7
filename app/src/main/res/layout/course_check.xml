@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/quest"
             android:layout_width="match_parent"
-            android:layout_height="154dp"
+            android:layout_height="wrap_content"
             android:textAlignment="textStart"
             android:textSize="20sp" />
 
@@ -40,13 +40,13 @@
         <TextView
             android:id="@+id/quest2"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="wrap_content"
             android:text="TextView"
             android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="58dp"
             android:orientation="horizontal">
 
             <Button
@@ -62,6 +62,19 @@
                 android:layout_height="58dp"
                 android:layout_weight="1"
                 android:text="@string/NoButton" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/postEnterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/postEnterButton" />
         </LinearLayout>
     </LinearLayout>
 

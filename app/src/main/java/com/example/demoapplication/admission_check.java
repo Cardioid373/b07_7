@@ -22,7 +22,7 @@ public class admission_check extends Fragment {
         String questionText = getArguments().getString("questionText", "");
         String programChosen = getArguments().getString("programChosen", "");
 
-        TextView admissionCheck = view.findViewById(R.id.csAdmissionCheck);
+        TextView admissionCheck = view.findViewById(R.id.admissionCheck);
         admissionCheck.setText(questionText);
 
         // Handle Yes or No Answers

@@ -5,8 +5,9 @@
     <string name="YesButton">Yes</string>
     <string name="NoButton">No</string>
     <string name="BackButton">Back</string>
+    <string name="postEnterButton">Enter</string>
 
-    <!-- program options for POST fragment -->
+    <!-- LIMITED PROGRAMS FOR CMS POST -->
     <string name="CS_Major_opt">Computer Science Major/Specialist</string>
     <string name="Stats_Major_opt">Statistics Major</string>
     <string name="Math_Major_opt">Math Major</string>
@@ -14,7 +15,7 @@
     <string name="Math_Specialist_opt">Math Specialist</string>
     <string name="Stats_Specialist_opt">Statistics Specialist</string>
 
-    <!-- POST QUESTIONS -->
+    <!-- POST ACTIVITY QUESTIONS -->
     <string name="CSq1">
         Were you admitted to first year Computer Science?
     </string>
@@ -64,7 +65,7 @@
 
     <!-- STATS POST REQUIREMENTS -->
     <string name="StatsMajorAdmittedReq1">
-        A grade point average of at least 2.3 across the following four
+        Do you have a gpa of at least 2.3 across the following four
         courses: CSCA08/A20, MATA22, MATA30/A31, MATA36/A37.
     </string>
     <string name="StatsMajorNotAdmittedReq1">
@@ -76,6 +77,14 @@
     </string>
     <string name="StatsSpecialistNotAdmittedReq1">
         Have you completed: CSCA08, CSC/MATA67, MATA22, MATA31, MATA37
+    </string>
+
+    <!-- POST activity messages -->
+    <string name="postReqMet">
+        You qualify for POST, having met the conditions.
+    </string>
+    <string name="postReqNotMet">
+        You do not qualify for POST.
     </string>
 
 </resources>
