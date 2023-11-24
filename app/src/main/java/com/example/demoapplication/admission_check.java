@@ -31,27 +31,26 @@ public class admission_check extends Fragment {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToNextFragment(questionText, programChosen, true);
+                navigateToNextFragment(programChosen, true);
             }
         });
 
         noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navigateToNextFragment(questionText, programChosen, false);
+                navigateToNextFragment(programChosen, false);
             }
         });
 
         return view;
     }
 
-    private void navigateToNextFragment(String questionText, String programChosen, boolean answer) {
+    private void navigateToNextFragment(String programChosen, boolean answer) {
         // the next fragment we will navigate to is the course_check fragment
         course_check nextFragment = new course_check();
 
         // Pass information to the course_check fragment
         Bundle bundle = new Bundle();
-        bundle.putString("questionText", questionText);
         bundle.putString("programChosen", programChosen);
         bundle.putBoolean("answer", answer);
         nextFragment.setArguments(bundle);

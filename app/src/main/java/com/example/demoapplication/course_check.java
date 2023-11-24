@@ -24,7 +24,6 @@ public class course_check extends Fragment {
         View view = inflater.inflate(R.layout.course_check, container, false);
 
         // Retrieve information from arguments
-        String questionText = getArguments().getString("questionText", ""); // admission question
         String programChosen = getArguments().getString("programChosen", ""); // program the user chose
         boolean admitted = getArguments().getBoolean("answer", false); // yes or no for admission
 
@@ -119,14 +118,12 @@ public class course_check extends Fragment {
             public void onClick(View view) {
                 if(!answer1 || !answer2) {
                     firstQuestion.setText(R.string.postReqNotMet);
-                    hideQuestion();
-                    enterButton.setVisibility(View.GONE);
                 }
                 else {
                     firstQuestion.setText(R.string.postReqMet);
-                    hideQuestion();
-                    enterButton.setVisibility(View.GONE);
                 }
+                hideQuestion();
+                enterButton.setVisibility(View.GONE);
             }
         });
 
