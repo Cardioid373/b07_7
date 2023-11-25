@@ -20,7 +20,7 @@ public class StudentActivity extends AppCompatActivity {
 
         Button btnPost = findViewById(R.id.studentPostButton);
         btnPost.setOnClickListener(view -> {
-            startActivity(new Intent(StudentActivity.this, StudentComplaintsActivity.class));
+            startActivity(new Intent(StudentActivity.this, PostActivity.class));
             finish();
         });
 
