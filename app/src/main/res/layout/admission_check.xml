@@ -25,17 +25,19 @@
 
             <Button
                 android:id="@+id/yesButton"
-                android:text="@string/YesButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="@string/YesButton"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/noButton"
-                android:text="@string/NoButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="@string/NoButton"
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
