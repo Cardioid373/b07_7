@@ -18,6 +18,13 @@ public class StudentActivity extends AppCompatActivity {
         Button btnComplaints = findViewById(R.id.studentComplaintsButton);
         Button btnLogout = findViewById(R.id.studentLogoutButton);
 
+        Button btnPost = findViewById(R.id.studentPostButton);
+        btnPost.setOnClickListener(view -> {
+            startActivity(new Intent(StudentActivity.this, StudentComplaintsActivity.class));
+            finish();
+        });
+
+
         btnComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
