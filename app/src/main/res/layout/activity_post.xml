@@ -7,14 +7,21 @@
     <FrameLayout
         android:id="@+id/questions_container"
         android:layout_width="match_parent"
-        android:layout_height="470dp">
+        android:layout_height="414dp">
+
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/postBackButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/BackButton" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,14 +30,14 @@
 
             <Button
                 android:id="@+id/CSMajorButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/CS_Major_opt" />
 
             <Button
                 android:id="@+id/CSMinorButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/CS_Minor_opt" />
@@ -43,14 +50,14 @@
 
             <Button
                 android:id="@+id/MathMajorButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/Math_Major_opt" />
 
             <Button
                 android:id="@+id/MathSpecialistButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/Math_Specialist_opt" />
@@ -63,23 +70,18 @@
 
             <Button
                 android:id="@+id/StatsMajorButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/Stats_Major_opt" />
 
             <Button
                 android:id="@+id/StatsSpecialistButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/Stats_Specialist_opt" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/postBackButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/BackButton" />
     </LinearLayout>
 </LinearLayout>

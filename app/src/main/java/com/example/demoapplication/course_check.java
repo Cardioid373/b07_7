@@ -13,9 +13,6 @@ import androidx.fragment.app.Fragment;
 public class course_check extends Fragment {
     /*This fragment will present the user with questions regarding the course and
     course grade requirements of their selected program*/
-    private TextView secondQuestion;
-    private Button yesButton2;
-    private Button noButton2;
     protected boolean answer1 = false;
     protected boolean answer2 = false;
 
@@ -25,15 +22,15 @@ public class course_check extends Fragment {
 
         // Retrieve information from arguments
         String programChosen = getArguments().getString("programChosen", ""); // program the user chose
-        boolean admitted = getArguments().getBoolean("answer", false); // yes or no for admission
+        boolean admitted = getArguments().getBoolean("answer", false); // whether they hit yes or no for admission
 
-        // Display question based on program chosen
+        // Buttons and Textviews
         TextView firstQuestion = view.findViewById(R.id.quest);
-        secondQuestion = view.findViewById(R.id.quest2);
+        TextView secondQuestion = view.findViewById(R.id.quest2);
         Button yesButton = view.findViewById(R.id.yesOne);
         Button noButton = view.findViewById(R.id.noOne);
-        yesButton2 = view.findViewById(R.id.yesTwo);
-        noButton2 = view.findViewById(R.id.noTwo);
+        Button yesButton2 = view.findViewById(R.id.yesTwo);
+        Button noButton2 = view.findViewById(R.id.noTwo);
         Button enterButton = view.findViewById(R.id.postEnterButton);
 
         // HANDLE WHICH QUESTIONS ARE DISPLAYED FOR CHOSEN PROGRAM
@@ -44,7 +41,7 @@ public class course_check extends Fragment {
             }
             else {
                 firstQuestion.setText(R.string.MathNotAdmittedRec1);
-                hideQuestion();
+                hideQuestion(secondQuestion, yesButton2, noButton2);
             }
         }
         else if(programChosen.equals("mathSpecialist")) {
@@ -54,7 +51,7 @@ public class course_check extends Fragment {
             }
             else {
                 firstQuestion.setText(R.string.MathNotAdmittedRec1);
-                hideQuestion();
+                hideQuestion(secondQuestion, yesButton2, noButton2);
             }
         }
         else if(programChosen.equals("statsMajor")) {
@@ -64,7 +61,7 @@ public class course_check extends Fragment {
             else {
                 firstQuestion.setText(R.string.StatsMajorNotAdmittedReq1);
             }
-            hideQuestion();
+            hideQuestion(secondQuestion, yesButton2, noButton2);
         }
         else if(programChosen.equals("statsSpecialist")) {
             if(admitted) {
@@ -73,7 +70,7 @@ public class course_check extends Fragment {
             else {
                 firstQuestion.setText(R.string.StatsSpecialistNotAdmittedReq1);
             }
-            hideQuestion();
+            hideQuestion(secondQuestion, yesButton2, noButton2);
         }
         else if(programChosen.equals("csMajor")) {
             firstQuestion.setText(R.string.CSMajorReq1);
@@ -81,7 +78,7 @@ public class course_check extends Fragment {
         }
         else if(programChosen.equals("csMinor")) {
             firstQuestion.setText(R.string.CSMinorReq1);
-            hideQuestion();
+            hideQuestion(secondQuestion, yesButton2, noButton2);
         }
 
         // HANDLE YES, NO AND ENTER BUTTONS TO QUESTIONS
@@ -99,8 +96,12 @@ public class course_check extends Fragment {
                 else {
                     firstQuestion.setText(R.string.postReqMet);
                 }
-                hideQuestion();
+
+                // hide everything except the message
+                hideQuestion(secondQuestion, yesButton2, noButton2);
                 enterButton.setVisibility(View.GONE);
+                yesButton.setVisibility(View.GONE);
+                noButton.setVisibility(View.GONE);
             }
         });
 
@@ -109,7 +110,7 @@ public class course_check extends Fragment {
 
 
     // This hides the buttons for the second question if there's only one POST requirement
-    private void hideQuestion() {
+    private void hideQuestion(TextView secondQuestion, Button yesButton2, Button noButton2) {
         secondQuestion.setVisibility(View.GONE);
         yesButton2.setVisibility(View.GONE);
         noButton2.setVisibility(View.GONE);
