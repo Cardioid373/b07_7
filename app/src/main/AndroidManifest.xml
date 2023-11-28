@@ -11,13 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApplication">
         <activity
-            android:name=".AnnouncementActivity"
+            android:name=".Notification"
             android:exported="false" />
-        <activity
-            android:name=".EventActivity"
-            android:exported="false" />
-
-        <!-- Main Activity -->
+         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,36 +23,27 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Student Activity -->
+        </activity> <!-- Student Activity -->
         <activity
             android:name=".StudentActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity>
-
-        <!-- Student Complaints Activity -->
+        </activity> <!-- Student Complaints Activity -->
         <activity
             android:name=".StudentComplaintsActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity>
-
-        <!-- Student New Complaint Activity -->
+        </activity> <!-- Student New Complaint Activity -->
         <activity
             android:name=".StudentNewComplaintActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity>
-
-        <!-- Student Past Complaints Activity -->
+        </activity> <!-- Student Past Complaints Activity -->
         <activity
             android:name=".StudentPastComplaintsActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
-
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".AdminLoginActivity"
@@ -64,18 +51,14 @@
         <activity
             android:name=".CreateEventActivity"
             android:label="Create Event" />
-        <activity android:name=".AdminHomeActivity" />
-
-        <!-- Notification -->
+        <activity android:name=".AdminHomeActivity" /> <!-- Notification -->
         <service
             android:name=".Notification"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-
-        <!-- Post Activity -->
+        </service> <!-- Post Activity -->
         <activity
             android:name=".PostActivity"
             android:exported="true">
@@ -84,16 +67,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Student Events Activity -->
+        </activity> <!-- Student Events Activity -->
         <activity
             android:name=".EventsActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
-
-
     </application>
 
 </manifest>

@@ -1,73 +1,101 @@
 package com.example.demoapplication;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Build;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class Notification extends FirebaseMessagingService {
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-    private static final String CHANNEL_ANNOUNCEMENTS = "announcements";
-    private static final String CHANNEL_EVENTS = "events";
+public class Notification extends AppCompatActivity {
 
+    private String type;
+    private String title;
+    private String content;
+
+    public Notification(String type, String title, String content) {
+        this.type = type;
+        this.title = title;
+        this.content = content;
+    }
+
+    // Getters for type, title, and content
+    public String getNotificationType() {
+        return type;
+    }
+    public String getNotificationTitle() {
+        return title;
+    }
+    public String getNotificationContent() {
+        return content;
+    }
+
+    // Setters for type, title, and content
+    public void setNotificationType(String type) {
+        this.type = type;
+    }
+    public void setNotificationTitle(String title) {
+        this.title = title;
+    }
+    public void setNotificationContent(String content) {
+        this.content = content;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onNewToken(@NonNull String s) {
-        Log.e("NEW_TOKEN", s);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notification);
 
-    @Override
-    public void onMessageReceived(@NonNull RemoteMessage message) {
-        super.onMessageReceived(message);
-        if (message.getNotification() != null) {
-            getFirebaseMessage(message.getNotification().getTitle(), message.getNotification().getBody());
-        }
-    }
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Notifications");
+        Query query = databaseReference.orderByChild("type");
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        RecyclerView recyclerView = findViewById(R.id.Notifications);
 
-    private void getFirebaseMessage(String title, String body) {
-        createNotificationChannel(CHANNEL_ANNOUNCEMENTS, "Announcement");
-        createNotificationChannel(CHANNEL_EVENTS, "Event");
+        FirebaseRecyclerOptions<Notification> options =
+                new FirebaseRecyclerOptions.Builder<Notification>()
+                        .setQuery(query, Notification.class)
+                        .build();
 
-        Intent announcementIntent = new Intent(this, AnnouncementActivity.class);
-        PendingIntent announcementPendingIntent = PendingIntent.getActivity(this, 0, announcementIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        FirebaseRecyclerAdapter<Notification, NotificationViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Notification, NotificationViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull NotificationViewHolder holder, int position, @NonNull Notification model) {
+                        if (model.getNotificationType().equals("event")) {
+                            holder.iconImageView.setImageResource(R.drawable.notification_event);
+                        } else if (model.getNotificationType().equals("announcement")) {
+                            holder.iconImageView.setImageResource(R.drawable.notification_announcement);
+                        }
+                        holder.titleTextView.setText(model.getNotificationTitle());
+                        holder.contentTextView.setText(model.getNotificationContent());
+                    }
 
-        Intent eventIntent = new Intent(this, EventActivity.class);
-        PendingIntent eventPendingIntent = PendingIntent.getActivity(this, 0, eventIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    @NonNull
+                    @Override
+                    public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        // Inflate the layout for the RecyclerView item here
+                        // ...
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_item, parent, false);
+                        return new NotificationViewHolder(view);
+                    }
+                };
 
-        NotificationCompat.Builder builderAnnouncement = new NotificationCompat.Builder(this, CHANNEL_ANNOUNCEMENTS)
-                .setSmallIcon(R.drawable.ic_notification_announcement)
-                .setContentTitle(title)
-                .setContentText(body)
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(announcementPendingIntent);
+        recyclerView.setAdapter(adapter);
 
-        NotificationCompat.Builder builderEvent = new NotificationCompat.Builder(this, CHANNEL_EVENTS)
-                .setSmallIcon(R.drawable.ic_notification_event)
-                .setContentTitle(title)
-                .setContentText(body)
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(eventPendingIntent);
-
-        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
-        managerCompat.notify(100, builderAnnouncement.build());
-        managerCompat.notify(101, builderEvent.build());
-    }
-
-    private void createNotificationChannel(String channelId, String channelName) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            adapter.notifyDataSetChanged();
+            swipeRefreshLayout.setRefreshing(false);
+        });
     }
 }
