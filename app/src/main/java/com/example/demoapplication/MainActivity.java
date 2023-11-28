@@ -11,8 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demoapplication.BlankActivity;
-import com.example.demoapplication.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     String storedPassword = dataSnapshot.child(email).child("password").getValue(String.class);
                     if (password.equals(storedPassword)) {
                         Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this, BlankActivity.class));
+                        startActivity(new Intent(MainActivity.this, StudentActivity.class));
                     }else{
                         Toast.makeText(MainActivity.this, "Incorrect user or password", Toast.LENGTH_SHORT).show();
                     }

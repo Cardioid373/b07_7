@@ -28,7 +28,14 @@ public class PostActivity extends AppCompatActivity {
         mathSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathSpecialist"));
         statsMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsMajor"));
         statsSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsSpecialist"));
-        postBackButton.setOnClickListener(view -> finish());
+        postBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Return to student page
+                startActivity(new Intent(PostActivity.this, StudentActivity.class));
+                finish();
+            }
+        });
     }
 
     private void navigateToFragment(Fragment fragment, String questionText, String programChosen) {
