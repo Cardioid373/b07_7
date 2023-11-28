@@ -18,6 +18,7 @@ public class StudentActivity extends AppCompatActivity {
         Button btnComplaints = findViewById(R.id.studentComplaintsButton);
         Button btnLogout = findViewById(R.id.studentLogoutButton);
         Button btnPost = findViewById(R.id.studentPostButton);
+	Button btnEvents = findViewById(R.id.studentPostButton);
 		
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +38,15 @@ public class StudentActivity extends AppCompatActivity {
             }
         });
 
+        btnEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Jump to events page
+                startActivity(new Intent(StudentActivity.this, EventsActivity.class));
+                finish();
+            }
+        });
+	    
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
