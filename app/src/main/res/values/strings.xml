@@ -98,6 +98,9 @@
     <string name="attend_switch_text">I want to attend this event!</string>
     <string name="left_button_text">«</string>
     <string name="right_button_text">»</string>
+    <string name="review_event_button_text">Submit review!</string>
+    <string name="review_event_edit_text">Write a review here!</string>
+
 
 
 </resources>

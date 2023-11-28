@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +38,11 @@ public class EventsActivity extends AppCompatActivity {
     private SwitchCompat rsvpSwitch;
     private Button leftButton;
     private Button rightButton;
-    private Button rightNoLeftButton;
     private Button backButton;
+    private RatingBar reviewRatingBar;
+    private EditText reviewEditText;
+
+    private Button reviewEventButton;
 
     private ArrayList<String> eventNames;
     private ArrayList<String> eventDepartments;
@@ -49,7 +54,7 @@ public class EventsActivity extends AppCompatActivity {
 
     int eventIndex;
     int eventsTotal;
-    int nextChronologicalEventIndex;
+    int nextChronologicalEventIndex = 2;
     int currentEventCapacity;
 
 
@@ -68,18 +73,20 @@ public class EventsActivity extends AppCompatActivity {
         rsvpSwitch = (SwitchCompat) findViewById(R.id.rsvpSwitch);
         leftButton = (Button) findViewById(R.id.leftButton);
         rightButton = (Button) findViewById(R.id.rightButton);
-        rightNoLeftButton = (Button) findViewById(R.id.rightNoLeftButton);
+        reviewRatingBar = (RatingBar) findViewById(R.id.reviewRatingBar);
+        reviewEditText = (EditText) findViewById(R.id.reviewEditText);
+        reviewEventButton = (Button) findViewById(R.id.reviewEventButton);
         backButton = (Button) findViewById(R.id.backButton);
 
         // this function gets event details from db and displays on page
         refreshEvents(true);
 
         // this section allows the switches to request/cancel rsvp/attending status
-        attendSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        attendSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            public void onClick(View view) {
                 goToEventIndex(eventIndex);
-                if (b) {
+                if (attendSwitch.isChecked()) {
                     if (currentEventCapacity < eventMaxLimits.get(eventIndex)) {
                         eventsRef.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").setValue("");
                         Toast.makeText(EventsActivity.this, "You have secured a spot at " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
@@ -91,18 +98,20 @@ public class EventsActivity extends AppCompatActivity {
                     Toast.makeText(EventsActivity.this, "You are not going to " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
                 }
                 goToEventIndex(eventIndex);
+
             }
         });
-        rsvpSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        rsvpSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
+            public void onClick(View view) {
+                if (rsvpSwitch.isChecked()) {
                     eventsRef.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).setValue(currentUser);
                     Toast.makeText(EventsActivity.this, "You will be notified of any updates to " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
                 } else {
                     eventsRef.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).removeValue();
                     Toast.makeText(EventsActivity.this, "You will not be notified of changes to " + eventNames.get(eventIndex) + ".", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -121,11 +130,15 @@ public class EventsActivity extends AppCompatActivity {
                 goToEventIndex(eventIndex);
             }
         });
-        rightNoLeftButton.setOnClickListener(new View.OnClickListener() {
+
+        // review event button listener
+        reviewEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eventIndex++;
-                goToEventIndex(eventIndex);
+                // send review to database
+                eventsRef.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("rating").setValue((Float) reviewRatingBar.getRating());
+                eventsRef.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").setValue(reviewEditText.getText().toString());
+                Toast.makeText(EventsActivity.this, "Your review of " + eventNames.get(eventIndex) + " was submitted!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -160,16 +173,10 @@ public class EventsActivity extends AppCompatActivity {
                     eventsTotal = eventNames.size();
 
                     if (returnToPresent) {
-                        nextChronologicalEventIndex = 0; // will be set to nearest event once chronological sorting is finished
+                        nextChronologicalEventIndex = 2; // will be set to nearest event once chronological sorting is finished
                         eventIndex = nextChronologicalEventIndex;
                         goToEventIndex(eventIndex);
                     }
-                    /*ArrayList<String> testArrayList = new ArrayList<String>();
-                    testArrayList.add("string number one");
-                    testArrayList.add("this is the second string");
-                    eventRef.child("testArrayList").removeValue();
-                    eventRef.child("testArrayList").child("42").child("rating").setValue(5);
-                    eventRef.child("testArrayList").child("42").child("review").setValue("amazing");*/
                 }
 
                 @Override
@@ -237,43 +244,54 @@ public class EventsActivity extends AppCompatActivity {
         // complicated because i couldn't figure out how to put buttons side by side
         if (eventIndex == 0) {
             leftButton.setVisibility(View.GONE);
-            rightButton.setVisibility(View.GONE);
-            if (eventIndex == eventsTotal - 1) {
-                rightNoLeftButton.setVisibility(View.GONE);
-            } else {
-                rightNoLeftButton.setVisibility(View.VISIBLE);
-            }
         } else {
             leftButton.setVisibility(View.VISIBLE);
-            rightNoLeftButton.setVisibility(View.GONE);
-            if (eventIndex == eventsTotal - 1) {
-                rightButton.setVisibility(View.GONE);
-            } else {
-                rightButton.setVisibility(View.VISIBLE);
-            }
+        }
+        if (eventIndex == eventsTotal - 1) {
+            rightButton.setVisibility(View.GONE);
+        } else {
+            rightButton.setVisibility(View.VISIBLE);
         }
 
-        // set state of the switches based off of student's choice
-        // set text of the attendSwitch based off of capacity
+        // set visibility, state and text of the switches based off of database and date
+        // set visibility, state and text of event review components and date
         eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).getValue() == null) {
-                    attendSwitch.setChecked(false);
+                if (eventIndex >= nextChronologicalEventIndex) {
+                    attendSwitch.setVisibility(View.VISIBLE);
+                    rsvpSwitch.setVisibility(View.VISIBLE);
+                    attendSwitch.setChecked(snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).getValue() != null);
+                    rsvpSwitch.setChecked(snapshot.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).getValue() != null);
+                    currentEventCapacity = 0;
+                    for (DataSnapshot child : snapshot.child(eventNames.get(eventIndex)).child("attendees").getChildren()) {
+                        currentEventCapacity++;
+                    }
+                    attendSwitch.setText("I want to attend this event! (" + currentEventCapacity + "/" + eventMaxLimits.get(eventIndex) + ")");
                 } else {
-                    attendSwitch.setChecked(true);
-                }
-                if (snapshot.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).getValue() == null) {
-                    rsvpSwitch.setChecked(false);
-                } else {
-                    rsvpSwitch.setChecked(true);
+                    attendSwitch.setVisibility(View.GONE);
+                    rsvpSwitch.setVisibility(View.GONE);
                 }
 
-                currentEventCapacity = 0;
-                for (DataSnapshot child : snapshot.child(eventNames.get(eventIndex)).child("attendees").getChildren()) {
-                    currentEventCapacity++;
+                if (eventIndex < nextChronologicalEventIndex && snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).getValue() != null) {
+                    reviewRatingBar.setVisibility(View.VISIBLE);
+                    reviewEditText.setVisibility(View.VISIBLE);
+                    reviewEventButton.setVisibility(View.VISIBLE);
+                    if (snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("rating").getValue() == null) {
+                        reviewRatingBar.setRating(0);
+                    } else {
+                        reviewRatingBar.setRating(snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("rating").getValue(Float.class));
+                    }
+                    if (snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").getValue() == "") {
+                        reviewEditText.setHint("Write a review here!");
+                    } else {
+                        reviewEditText.setText(snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").getValue(String.class));
+                    }
+                } else {
+                    reviewRatingBar.setVisibility(View.GONE);
+                    reviewEditText.setVisibility(View.GONE);
+                    reviewEventButton.setVisibility(View.GONE);
                 }
-                attendSwitch.setText("I want to attend this event! (" + currentEventCapacity + "/" + eventMaxLimits.get(eventIndex) + ")");
             }
 
             @Override
@@ -281,6 +299,8 @@ public class EventsActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
 
 }
