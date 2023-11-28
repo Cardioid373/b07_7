@@ -1,4 +1,90 @@
 <resources>
     <string name="app_name">Demo Application</string>
     <string name="blank_activity_title">Blank Activity</string>
+
+    <string name="YesButton">Yes</string>
+    <string name="NoButton">No</string>
+    <string name="BackButton">Back</string>
+    <string name="postEnterButton">Enter</string>
+
+    <!-- LIMITED PROGRAMS FOR CMS POST -->
+    <string name="CS_Major_opt">Computer Science Major/Specialist</string>
+    <string name="Stats_Major_opt">Statistics Major</string>
+    <string name="Math_Major_opt">Math Major</string>
+    <string name="CS_Minor_opt">Computer Science Minor</string>
+    <string name="Math_Specialist_opt">Math Specialist</string>
+    <string name="Stats_Specialist_opt">Statistics Specialist</string>
+
+    <!-- POST ACTIVITY QUESTIONS -->
+    <string name="CSq1">
+        Were you admitted to first year Computer Science?
+    </string>
+    <string name="Statsq1">
+        Were you admitted to first year Statistics?
+    </string>
+    <string name="Mathq1">
+        Were you admitted to first year Math?
+    </string>
+    
+    <!-- CS POST REQUIREMENTS -->
+    <string name="CSMajorReq1">
+        Have you passed CSCA08 and gotten a GPA of at least 2.5
+        over the following courses: CSCA48H3, CSC/MATA67H3,
+        MATA22H3, MATA31H3, and MATA37H3
+    </string>
+    <string name="CSMajorReq2">
+        Did you get a final grade of at least a B in CSCA48H3. And did
+        you get a final grade of at least C- in two of these:
+        CSC/MATA67H3, MATA22H3, and MATA37H3
+    </string>
+    <string name="CSMinorReq1">
+        Have you completed 4.0 credits, and passed CSCA08H3,
+        CSCA48H3, and one of these: [CSCA67H3, MATA67H3, MATA22H3, MATA23H3,
+        MATA30H3, MATA31H3, or [(MATA32H3) or MATA34H3]
+    </string>
+
+    <!-- MATH POST REQUIREMENTS -->
+    <string name="MathMajorAdmittedReq1">
+        Do you have a gpa of at least 2.0 across the following four
+        courses: CSC/MAT A67, MAT A22, MAT A31, MAT A37
+    </string>
+    <string name="MathMajorAdmittedReq2">
+        Do you have at least a B in one of CSC/MAT A67, MAT A22, MATA37
+    </string>
+    <string name="MathNotAdmittedRec1">
+        Have you passed CSC/MAT A67, MAT A22, MAT A31, MAT A37
+    </string>
+    <string name="MathSpecialistAdmittedRec1">
+        Do you have a gpa of at least 2.5 across the following four
+        courses: CSC/MAT A67, MAT A22, MAT A31, MAT A37.
+    </string>
+    <string name="MathSpecialistAdmittedReq2">
+        Do you have at least a B in two of CSC/MAT A67, MAT A22, MATA37
+    </string>
+
+
+    <!-- STATS POST REQUIREMENTS -->
+    <string name="StatsMajorAdmittedReq1">
+        Do you have a gpa of at least 2.3 across the following four
+        courses: CSCA08/A20, MATA22, MATA30/A31, MATA36/A37.
+    </string>
+    <string name="StatsMajorNotAdmittedReq1">
+        Have you completed: CSCA08/A20, MATA22, MATA30/A31, MATA36/A37
+    </string>
+    <string name="StatsSpecialistAdmittedReq1">
+        Do you have a gpa of at least 2.5 across the following five
+        courses: CSCA08, CSC/MATA67, MATA22, MATA31, MATA37.
+    </string>
+    <string name="StatsSpecialistNotAdmittedReq1">
+        Have you completed: CSCA08, CSC/MATA67, MATA22, MATA31, MATA37
+    </string>
+
+    <!-- POST activity messages -->
+    <string name="postReqMet">
+        You qualify for POST, having met the conditions.
+    </string>
+    <string name="postReqNotMet">
+        You do not qualify for POST.
+    </string>
+
 </resources>
