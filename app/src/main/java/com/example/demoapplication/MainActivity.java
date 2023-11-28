@@ -20,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    static String currentUser;
+    
     private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 if (dataSnapshot.child(email).exists()) {
                     String storedPassword = dataSnapshot.child(email).child("password").getValue(String.class);
                     if (password.equals(storedPassword)) {
+                        currentUser = email;
                         Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, StudentActivity.class));
                     }else{

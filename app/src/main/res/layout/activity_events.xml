@@ -124,6 +124,14 @@
         android:text="@string/right_button_text"
         android:textSize="27sp" />
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:text="@string/BackButton" />
+
 
 </LinearLayout>
 

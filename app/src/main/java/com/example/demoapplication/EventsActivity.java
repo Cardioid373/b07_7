@@ -2,6 +2,7 @@ package com.example.demoapplication;
 
 import static com.example.demoapplication.MainActivity.currentUser;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ public class EventsActivity extends AppCompatActivity {
     private Button leftButton;
     private Button rightButton;
     private Button rightNoLeftButton;
+    private Button backButton;
 
     private ArrayList<String> eventNames;
     private ArrayList<String> eventDepartments;
@@ -67,6 +69,7 @@ public class EventsActivity extends AppCompatActivity {
         leftButton = (Button) findViewById(R.id.leftButton);
         rightButton = (Button) findViewById(R.id.rightButton);
         rightNoLeftButton = (Button) findViewById(R.id.rightNoLeftButton);
+        backButton = (Button) findViewById(R.id.backButton);
 
         // this function gets event details from db and displays on page
         refreshEvents(true);
@@ -123,6 +126,14 @@ public class EventsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 eventIndex++;
                 goToEventIndex(eventIndex);
+            }
+        });
+
+        // back button listener
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EventsActivity.this, StudentActivity.class));
             }
         });
 
