@@ -20,12 +20,12 @@ public class StudentActivity extends AppCompatActivity {
         Button btnPost = findViewById(R.id.studentPostButton);
 		
         btnPost.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void OnClick(View view) {
-				// Jump to post page
-				startActivity(new Intent(StudentActivity.this, PostActivity.class));
-				finish();
-			}
+            @Override
+            public void onClick(View view) {
+                // Jump to post page
+                startActivity(new Intent(StudentActivity.this, PostActivity.class));
+                finish();
+            }
         });
 
         btnComplaints.setOnClickListener(new View.OnClickListener() {

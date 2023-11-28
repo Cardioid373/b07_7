@@ -1,6 +1,8 @@
 package com.example.demoapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,7 @@ public class PostActivity extends AppCompatActivity {
         mathSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathSpecialist"));
         statsMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsMajor"));
         statsSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsSpecialist"));
+
         postBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
