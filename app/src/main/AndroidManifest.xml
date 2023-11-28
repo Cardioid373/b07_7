@@ -29,9 +29,30 @@
             </intent-filter>
         </activity>
 
-        <!-- Blank Activity -->
+        <!-- Student Activity -->
         <activity
-            android:name=".BlankActivity"
+            android:name=".StudentActivity"
+            android:label="@string/blank_activity_title"
+            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
+        </activity>
+
+        <!-- Student Complaints Activity -->
+        <activity
+            android:name=".StudentComplaintsActivity"
+            android:label="@string/blank_activity_title"
+            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
+        </activity>
+
+        <!-- Student New Complaint Activity -->
+        <activity
+            android:name=".StudentNewComplaintActivity"
+            android:label="@string/blank_activity_title"
+            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
+        </activity>
+
+        <!-- Student Past Complaints Activity -->
+        <activity
+            android:name=".StudentPastComplaintsActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
@@ -53,6 +74,18 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <!-- Post Activity -->
+        <activity
+            android:name=".PostActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
