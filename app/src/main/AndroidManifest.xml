@@ -46,13 +46,6 @@
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
 
-        <!-- Student Past Complaints Activity -->
-        <activity
-            android:name=".StudentPastComplaintsActivity"
-            android:label="@string/blank_activity_title"
-            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity>
-
         <activity android:name=".RegisterActivity" />
 
         <activity
