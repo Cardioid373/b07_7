@@ -33,7 +33,7 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Jump to complaints page
-                startActivity(new Intent(StudentActivity.this, StudentComplaintsActivity.class));
+                startActivity(new Intent(StudentActivity.this, StudentNewComplaintActivity.class));
                 finish();
             }
         });

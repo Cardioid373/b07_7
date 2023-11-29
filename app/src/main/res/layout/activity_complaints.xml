@@ -12,12 +12,6 @@
         android:text="New complaint" />
 
     <Button
-        android:id="@+id/studentPastComplaintsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Past Complaints" />
-
-    <Button
         android:id="@+id/studentComplaintsBackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

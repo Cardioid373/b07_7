@@ -1,4 +1,3 @@
-<!-- res/layout/activity_admin_home.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Events"
-        android:layout_centerInParent="true"
-        android:onClick="goToCreateEventPage" />
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnComplaints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complaints"
+        android:layout_below="@id/btnEvents"
+        android:layout_marginBottom="16dp"
+        android:layout_centerVertical="true"/>
+
+
+    <Button
+        android:id="@+id/btnlogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:layout_below="@id/btnComplaints"
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>
