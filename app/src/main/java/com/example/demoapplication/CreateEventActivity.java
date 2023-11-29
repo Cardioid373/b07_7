@@ -1,5 +1,6 @@
 package com.example.demoapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -65,6 +66,15 @@ public class CreateEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createEvent();
+            }
+        });
+
+        Button btnBackToHome = findViewById(R.id.btnBackToHome);
+        btnBackToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateEventActivity.this, AdminHomeActivity.class));
+                finish();
             }
         });
     }
