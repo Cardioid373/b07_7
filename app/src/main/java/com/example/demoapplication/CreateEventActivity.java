@@ -78,22 +78,22 @@ public class CreateEventActivity extends AppCompatActivity {
 
         String selectedDate = String.format("%04d-%02d-%02d", year, month, day);
         String selectedTime = String.format("%02d:%02d", hour, minute);
-        Event announcement = new Event(
+        Event event = new Event(
                 editTextName.getText().toString(), selectedDate, selectedTime, editTextLocation.getText().toString(),
                 editTextDepartment.getText().toString(), editTextDescription.getText().toString(), Integer.parseInt(editTextMaxLimit.getText().toString()), 0, 0
 
         );
 
-        DatabaseReference announcementsRef = FirebaseDatabase.getInstance().getReference("announcements");
+        DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("events");
 
-        announcementsRef.orderByChild("name").equalTo(announcement.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
+        eventsRef.orderByChild("name").equalTo(event.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Toast.makeText(CreateEventActivity.this, "Event with the same name already exists", Toast.LENGTH_SHORT).show();
                 } else {
-                    announcementsRef.child(announcement.getName()).setValue(announcement);
-                    Toast.makeText(CreateEventActivity.this, "Announcement created", Toast.LENGTH_SHORT).show();
+                    eventsRef.child(event.getName()).setValue(event);
+                    Toast.makeText(CreateEventActivity.this, "Event created", Toast.LENGTH_SHORT).show();
                 }
             }
 

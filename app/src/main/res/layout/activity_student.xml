@@ -20,6 +20,12 @@
         android:text="Events" />
 
     <Button
+        android:id="@+id/studentNotificationsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notifications" />
+
+    <Button
         android:id="@+id/studentComplaintsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
