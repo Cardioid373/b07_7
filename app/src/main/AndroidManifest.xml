@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.demoapplication">
-
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,62 +11,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApplication">
-
+        <activity
+            android:name=".EventFeedbackActivity"
+            android:exported="false" />
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <!-- Student Activity -->
+        </activity> <!-- Student Activity -->
         <activity
             android:name=".StudentActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity>
-
-        <!-- Student Complaints Activity -->
+        </activity> <!-- Student Complaints Activity -->
         <activity
             android:name=".StudentComplaintsActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity>
-
-        <!-- Student New Complaint Activity -->
+        </activity> <!-- Student New Complaint Activity -->
         <activity
             android:name=".StudentNewComplaintActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity>
-
-        <!-- Student Past Complaints Activity -->
+        </activity> <!-- Student Past Complaints Activity -->
         <activity
             android:name=".StudentPastComplaintsActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
-
         <activity android:name=".RegisterActivity" />
-
         <activity
             android:name=".AdminLoginActivity"
-            android:label="Admin Login">
-        </activity>
-
+            android:label="Admin Login"></activity>
         <activity
             android:name=".CreateEventActivity"
-            android:label="Create Event">
-        </activity>
-
-        <activity android:name=".AdminHomeActivity" />
-
-        <!-- Post Activity -->
+            android:label="Create Event"></activity>
+        <activity android:name=".AdminHomeActivity" /> <!-- Post Activity -->
         <activity
             android:name=".PostActivity"
             android:exported="true">
@@ -76,16 +61,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Student Events Activity -->
+        </activity> <!-- Student Events Activity -->
         <activity
             android:name=".EventsActivity"
             android:label="@string/blank_activity_title"
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
-
-
     </application>
 
 </manifest>

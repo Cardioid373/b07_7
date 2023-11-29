@@ -1,17 +1,23 @@
 <!-- res/layout/activity_admin_home.xml -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".AdminHomeActivity">
 
     <Button
         android:id="@+id/btnEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Events"
-        android:layout_centerInParent="true"
-        android:onClick="goToCreateEventPage" />
+        android:onClick="goToCreateEventPage"
+        android:text="Events" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/EventFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Feedback" />
+
+</LinearLayout>
