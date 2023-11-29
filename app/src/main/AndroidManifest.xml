@@ -11,19 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApplication">
-		
-        <activity
-            android:name=".NotificationActivity2"
-            android:exported="false" />
-		
+
         <!-- Notification Activity -->
         <activity
             android:name=".NotificationActivity"
             android:exported="true" />
-		
+
+        <activity
+            android:name=".NotificationActivity2"
+            android:exported="false" />
+
+        <!-- EventFeedback Activity -->
         <activity
 			android:name=".EventFeedbackActivity"
-            android:exported="false" />
+            android:exported="true" />
 		
         <!-- Main Activity -->
         <activity
@@ -35,7 +36,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Student Activity -->
+        </activity>
+
+        <!-- Student Activity -->
         <activity
             android:name=".StudentActivity"
             android:label="@string/blank_activity_title"
@@ -63,14 +66,9 @@
         <activity
             android:name=".CreateEventActivity"
             android:label="Create Event" />
-        <activity android:name=".AdminHomeActivity" /> <!-- Notification -->
-        <service
-            android:name=".NotificationActivity"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service> <!-- Post Activity -->
+        <activity android:name=".AdminHomeActivity" />
+
+        <!-- Post Activity -->
         <activity
             android:name=".PostActivity"
             android:exported="true">
@@ -79,7 +77,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Student Events Activity -->
+        </activity>
+
+        <!-- Student Events Activity -->
         <activity
             android:name=".EventsActivity"
             android:label="@string/blank_activity_title"
