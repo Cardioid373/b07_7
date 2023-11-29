@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class EventsActivity extends AppCompatActivity {
@@ -41,7 +42,6 @@ public class EventsActivity extends AppCompatActivity {
     private Button backButton;
     private RatingBar reviewRatingBar;
     private EditText reviewEditText;
-
     private Button reviewEventButton;
 
     private ArrayList<String> eventNames;
@@ -54,7 +54,7 @@ public class EventsActivity extends AppCompatActivity {
 
     int eventIndex;
     int eventsTotal;
-    int nextChronologicalEventIndex = 2;
+    int nextChronologicalEventIndex;
     int currentEventCapacity;
 
 
@@ -171,12 +171,14 @@ public class EventsActivity extends AppCompatActivity {
                     }
                     eventMaxLimits = temp;
                     eventsTotal = eventNames.size();
+                    sortChronological();
 
                     if (returnToPresent) {
-                        nextChronologicalEventIndex = 2; // will be set to nearest event once chronological sorting is finished
+                        findNextChronologicalEventIndex();
                         eventIndex = nextChronologicalEventIndex;
-                        goToEventIndex(eventIndex);
                     }
+
+                    goToEventIndex(eventIndex);
                 }
 
                 @Override
@@ -198,39 +200,81 @@ public class EventsActivity extends AppCompatActivity {
         return list;
     }
 
-    /* to be finished (chronological sorting, adding UI and code for submitting event review)
-    private void sortChronological(ArrayList<String> timeValues, ArrayList<String>[] dependants) {
+    /* to be finished (chronological sorting) */
+    private void sortChronological() {
         // find chronological reordering
-        int length = timeValues.size();
+        int length = eventDates.size();
         int[] reordering = new int[length];
         for (int i=0; i<length; i++) {
-            for (int j=0; j<length; j++) {
-                if (hashTime(timeValues.get(j)) < hashTime(timeValues.get(i))) {
-                    reordering[j] = i;
-                    reordering[i] = j;
-                    break;
+            for (int j=0; j<length-1; j++) {
+                if ((hashDate(eventDates.get(j)) + hashTime(eventTimes.get(j))) > (hashDate(eventDates.get(j+1)) + hashTime(eventTimes.get(j+1)))) {
+                    String temp;
+                    temp = eventDates.get(j);
+                    eventDates.remove(j);
+                    eventDates.add(j+1,temp);
+                    temp = eventTimes.get(j);
+                    eventTimes.remove(j);
+                    eventTimes.add(j+1,temp);
+                    reordering[j] = j+1;
+                    reordering[j+1] = j;
                 }
             }
         }
 
-        // apply reordering to all dependants
-        for (ArrayList<String> dependant : dependants) {
-            reorderWRT(dependant, reordering);
+        // apply reordering to all event lists and eventMaxLimits
+        eventNames = reorderWRT(eventNames, reordering);
+        eventDepartments = reorderWRT(eventDepartments, reordering);
+        eventLocations = reorderWRT(eventLocations, reordering);
+        eventDescriptions = reorderWRT(eventDescriptions, reordering);
+        reorderMaxLimitsWRT(reordering);
+    }
+
+    private int hashDate(String date) {
+        String[] ymdStr = date.split("-");
+        int[] ymdInt = new int[3];
+        for (int i=0; i<3; i++) {
+            ymdInt[i] = Integer.parseInt(ymdStr[i]);
         }
+        return (ymdInt[0] * 365 + ymdInt[1] * 30 + ymdInt[2]) * 1440;
     }
 
     private int hashTime(String time) {
-        // make a chronologically linear hashing function
-        return time.hashCode();
+        String[] hmStr = time.split(":");
+        int[] hmInt = new int[2];
+        for (int i=0; i<2; i++) {
+            hmInt[i] = Integer.parseInt(hmStr[i]);
+        }
+        return hmInt[0] * 60 + hmInt[1];
     }
 
     private ArrayList<String> reorderWRT(ArrayList<String> unordered, @NonNull int[] ordering) {
-        ArrayList<String> reordered = null;
+        ArrayList<String> reordered = new ArrayList<String>();
         for (int i : ordering) {
             reordered.add(unordered.get(i));
         }
         return reordered;
-    } */
+    }
+
+    private void reorderMaxLimitsWRT(@NonNull int[] ordering) {
+        ArrayList<Integer> reordered = new ArrayList<Integer>();
+        for (int i : ordering) {
+            reordered.add(eventMaxLimits.get(i));
+        }
+        eventMaxLimits = reordered;
+    }
+
+    private void findNextChronologicalEventIndex() {
+        LocalDate currentTime = LocalDate.now();
+        int dateValue = hashDate(currentTime.toString()) + hashTime("00:00");
+        nextChronologicalEventIndex = 0;
+        for (int i=0; i<eventsTotal; i++) {
+            if (dateValue <= hashDate(eventDates.get(i)) + hashTime(eventTimes.get(i))) {
+                break;
+            } else {
+                nextChronologicalEventIndex++;
+            }
+        }
+    }
 
     private void goToEventIndex(int eventIndex) {
         // set text of each textView
