@@ -98,9 +98,15 @@
     <string name="attend_switch_text">I want to attend this event!</string>
     <string name="left_button_text">«</string>
     <string name="right_button_text">»</string>
+    <string name="review_event_button_text">Submit review!</string>
+    <string name="review_event_edit_text">Write a review here!</string>
 
     <!-- Notification Interface -->
     <string name="notificationTitle">Title</string>
     <string name="notificationContent">Content</string>
+
+    <!-- Events Activity messages -->
+    <string name="no_rating_message">No one has rated yet</string>
+    <string name="no_feedback_message">No feedback at the moment</string>
 
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.demoapplication">
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,13 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApplication">
+		
         <activity
             android:name=".NotificationActivity2"
             android:exported="false" />
+		
         <!-- Notification Activity -->
         <activity
             android:name=".NotificationActivity"
-            android:exported="true" /> <!-- Main Activity -->
+            android:exported="true" />
+		
+        <activity
+			android:name=".EventFeedbackActivity"
+            android:exported="false" />
+		
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
