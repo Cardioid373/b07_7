@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".AdminHomeActivity">
 
     <Button
@@ -31,4 +32,10 @@
         android:layout_below="@id/btnComplaints"
         android:layout_centerVertical="true"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/EventFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Feedback" />
+
+</LinearLayout>

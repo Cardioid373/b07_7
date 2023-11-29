@@ -41,5 +41,17 @@ public class AdminHomeActivity extends AppCompatActivity {
                 Toast.makeText(AdminHomeActivity.this, "Logout successful!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        Button btnFeedback = findViewById(R.id.EventFeedback);
+
+        btnFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminHomeActivity.this, EventFeedbackActivity.class));
+            }
+        });
+    }
+    public void goToCreateEventPage(View view) {
+        startActivity(new Intent(this, CreateEventActivity.class));
     }
 }

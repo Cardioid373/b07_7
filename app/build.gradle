@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.demoapplication"
-        minSdk 21
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.example.demoapplication'
 }
 
 dependencies {
@@ -34,7 +35,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'com.google.firebase:firebase-database:20.2.1'
-    implementation 'com.google.firebase:firebase-auth:22.2.0' // Replace with the latest version
+    implementation 'com.google.firebase:firebase-auth:22.2.0'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.1'
     testImplementation 'junit:junit:4.+'
     testImplementation 'org.mockito:mockito-all:1.10.19'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
