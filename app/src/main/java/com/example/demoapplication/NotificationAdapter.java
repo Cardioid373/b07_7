@@ -8,25 +8,30 @@ import android.widget.TextView;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 
+    private final NotificationInterface notificationInterface;
+
     Context context;
     ArrayList<Notification> notificationList;
 
-    public NotificationAdapter(Context context, ArrayList<Notification> notificationList) {
+    public NotificationAdapter(Context context, ArrayList<Notification> notificationList,
+                               NotificationInterface notificationInterface) {
         this.context = context;
         this.notificationList = notificationList;
+        this.notificationInterface = notificationInterface;
     }
 
     @NonNull
     @Override
     public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.notification_item, parent, false);
-        return new NotificationViewHolder(view);
+        return new NotificationViewHolder(view, notificationInterface);
     }
 
     @Override
@@ -41,6 +46,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.titleTextView.setText(notification.getNotificationTitle());
             holder.contentTextView.setText(notification.getNotificationContent());
         }
+
+        if (notification.isRead()) {
+            holder.iconImageView.setColorFilter(ContextCompat.getColor(context, R.color.black));
+        } else {
+            holder.iconImageView.setColorFilter(ContextCompat.getColor(context, R.color.purple_500));
+        }
     }
 
     @Override
@@ -54,11 +65,25 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         TextView titleTextView;
         TextView contentTextView;
 
-        public NotificationViewHolder(@NonNull View itemView) {
+        public NotificationViewHolder(@NonNull View itemView, NotificationInterface notificationInterface) {
             super(itemView);
             iconImageView = itemView.findViewById(R.id.NotificationIcon);
             titleTextView = itemView.findViewById(R.id.NotificationTitle);
             contentTextView = itemView.findViewById(R.id.NotificationContent);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (notificationInterface != null){
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION){
+                            notificationInterface.onItemClick(position);
+                        }
+
+                    }
+                }
+            });
         }
     }
 

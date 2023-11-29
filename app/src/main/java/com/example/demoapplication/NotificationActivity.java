@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +23,7 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 
-public class NotificationActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity implements NotificationInterface {
 
     RecyclerView recyclerView;
     DatabaseReference notificationRef;
@@ -53,7 +54,7 @@ public class NotificationActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         notificationList = new ArrayList<>();
-        notificationAdapter = new NotificationAdapter(this,notificationList);
+        notificationAdapter = new NotificationAdapter(this, notificationList, this);
         recyclerView.setAdapter(notificationAdapter);
 
         eventRef.addChildEventListener(new ChildEventListener() {
@@ -135,7 +136,7 @@ public class NotificationActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Notification notification = dataSnapshot.getValue(Notification.class);
                     notificationList.add(notification);
                 }
@@ -148,14 +149,22 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
 
-        btnNotificationBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Return to student pag
-                startActivity(new Intent(NotificationActivity.this, StudentActivity.class));
-                finish();
-            }
+        btnNotificationBack.setOnClickListener(view -> {
+            //Return to student pag
+            startActivity(new Intent(NotificationActivity.this, StudentActivity.class));
+            finish();
         });
     }
 
+    @Override
+    public void onItemClick(int position) {
+        Notification clickedNotification = notificationList.get(position);
+        clickedNotification.setRead(true);
+        notificationAdapter.notifyItemChanged(position);
+
+        Intent intent = new Intent(NotificationActivity.this, NotificationActivity2.class);
+        intent.putExtra("notificationTitle", clickedNotification.getNotificationTitle());
+        intent.putExtra("notificationContent", clickedNotification.getNotificationContent());
+        startActivity(intent);
+    }
 }

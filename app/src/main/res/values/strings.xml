@@ -99,5 +99,8 @@
     <string name="left_button_text">«</string>
     <string name="right_button_text">»</string>
 
+    <!-- Notification Interface -->
+    <string name="notificationTitle">Title</string>
+    <string name="notificationContent">Content</string>
 
 </resources>
