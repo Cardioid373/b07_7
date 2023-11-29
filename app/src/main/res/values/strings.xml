@@ -25,7 +25,7 @@
     <string name="Mathq1">
         Were you admitted to first year Math?
     </string>
-    
+
     <!-- CS POST REQUIREMENTS -->
     <string name="CSMajorReq1">
         Have you passed CSCA08 and gotten a GPA of at least 2.5
@@ -101,6 +101,8 @@
     <string name="review_event_button_text">Submit review!</string>
     <string name="review_event_edit_text">Write a review here!</string>
 
-
+    <!-- Events Activity messages -->
+    <string name="no_rating_message">No one has rated yet</string>
+    <string name="no_feedback_message">No feedback at the moment</string>
 
 </resources>
