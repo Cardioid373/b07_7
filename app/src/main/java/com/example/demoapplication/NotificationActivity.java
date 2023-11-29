@@ -35,13 +35,6 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
         Button btnNotificationBack = findViewById(R.id.NotificationBackButton);
 
-        // Instantiate the NotificationCreator
-        NotificationCreator notificationCreator = new NotificationCreator();
-
-        // Call the methods to create notifications
-        notificationCreator.createEventNotifications();
-        notificationCreator.createAnnouncementNotifications();
-
         notificationRef = FirebaseDatabase.getInstance().getReference("notifications");
         eventRef = FirebaseDatabase.getInstance().getReference("events");
         announcementRef = FirebaseDatabase.getInstance().getReference("announcements");
@@ -131,6 +124,8 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
         notificationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                notificationList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Notification notification = dataSnapshot.getValue(Notification.class);
