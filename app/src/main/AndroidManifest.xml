@@ -71,6 +71,14 @@
             </intent-filter>
         </activity>
 
+        <!-- Student Events Activity -->
+        <activity
+            android:name=".EventsActivity"
+            android:label="@string/blank_activity_title"
+            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
+        </activity>
+
+
     </application>
 
 </manifest>
