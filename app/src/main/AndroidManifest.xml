@@ -10,9 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApplication">
+        <!-- Notification Activity -->
         <activity
-            android:name=".Notification"
-            android:exported="false" />
+            android:name=".NotificationActivity"
+            android:exported="true" />
          <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
@@ -53,7 +54,7 @@
             android:label="Create Event" />
         <activity android:name=".AdminHomeActivity" /> <!-- Notification -->
         <service
-            android:name=".Notification"
+            android:name=".NotificationActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

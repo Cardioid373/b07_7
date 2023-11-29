@@ -51,8 +51,8 @@ public class StudentActivity extends AppCompatActivity {
         btnNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Jump to events page
-                startActivity(new Intent(StudentActivity.this, Notification.class));
+                // Jump to notifications page
+                startActivity(new Intent(StudentActivity.this, NotificationActivity.class));
                 finish();
             }
         });
