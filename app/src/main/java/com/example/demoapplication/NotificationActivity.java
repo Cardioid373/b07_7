@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -81,8 +83,9 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("NotificationActivity", "Database Error: " + databaseError.getMessage());
+                Toast.makeText(NotificationActivity.this, "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,8 +118,9 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("NotificationActivity", "Database Error: " + databaseError.getMessage());
+                Toast.makeText(NotificationActivity.this, "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -135,8 +139,9 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("NotificationActivity", "Database Error: " + databaseError.getMessage());
+                Toast.makeText(NotificationActivity.this, "Database Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
