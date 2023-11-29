@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +36,8 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
+        Button btnNotificationBack = findViewById(R.id.NotificationBackButton);
+
         // Instantiate the NotificationCreator
         NotificationCreator notificationCreator = new NotificationCreator();
 
@@ -45,8 +50,6 @@ public class NotificationActivity extends AppCompatActivity {
         announcementRef = FirebaseDatabase.getInstance().getReference("announcements");
 
         recyclerView = findViewById(R.id.Notifications);
-
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         notificationList = new ArrayList<>();
@@ -67,7 +70,9 @@ public class NotificationActivity extends AppCompatActivity {
                 String eventContent = "Date: " + eventDate + "\nTime: " + eventTime + "\nLocation: " + eventLocation + "\nDepartment: " + eventDepartment + "\nDescription: " + eventDescription;
 
                 // Push the new notification to the Notifications list
-                notificationRef.child(eventName).setValue(new Notification("event", eventName, eventContent));
+                if (eventName != null) {
+                    notificationRef.child(eventName).setValue(new Notification("event", eventName, eventContent));
+                }
             }
 
             @Override
@@ -99,7 +104,9 @@ public class NotificationActivity extends AppCompatActivity {
                 String announcementContent = dataSnapshot.child("content").getValue(String.class);
 
                 // Push the new notification to the Notifications list
-                notificationRef.child(announcementTitle).setValue(new Notification("announcement", announcementTitle, announcementContent));
+                if (announcementTitle != null) {
+                    notificationRef.child(announcementTitle).setValue(new Notification("announcement", announcementTitle, announcementContent));
+                }
             }
 
             @Override
@@ -138,6 +145,15 @@ public class NotificationActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        btnNotificationBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Return to student pag
+                startActivity(new Intent(NotificationActivity.this, StudentActivity.class));
+                finish();
             }
         });
     }

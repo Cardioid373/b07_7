@@ -1,25 +1,29 @@
 package com.example.demoapplication;
 
 public class Notification {
-    private String type;
-    private String title;
-    private String content;
+    private String notificationType;
+    private String notificationTitle;
+    private String notificationContent;
 
-    public Notification(String type, String title, String content) {
-        this.type = type;
-        this.title = title;
-        this.content = content;
+    public Notification(){
+
+    }
+
+    public Notification(String notificationType, String notificationTitle, String notificationContent) {
+        this.notificationType = notificationType;
+        this.notificationTitle = notificationTitle;
+        this.notificationContent = notificationContent;
     }
 
     public String getNotificationType() {
-        return type;
+        return notificationType;
     }
 
     public String getNotificationTitle() {
-        return title;
+        return notificationTitle;
     }
 
     public String getNotificationContent() {
-        return content;
+        return notificationContent;
     }
 }

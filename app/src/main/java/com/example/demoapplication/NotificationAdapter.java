@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 
     Context context;
-    private ArrayList<Notification> notificationList;
+    ArrayList<Notification> notificationList;
 
     public NotificationAdapter(Context context, ArrayList<Notification> notificationList) {
         this.context = context;
@@ -32,14 +32,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         Notification notification = notificationList.get(position);
-        if (notification.getNotificationType().equals("event")) {
-            holder.iconImageView.setImageResource(R.drawable.notification_event);
-        } else if (notification.getNotificationType().equals("announcement")) {
-            holder.iconImageView.setImageResource(R.drawable.notification_announcement);
+        if (notification != null && notification.getNotificationType() != null && notification.getNotificationContent() != null && notification.getNotificationTitle() != null) {
+            if (notification.getNotificationType().equals("event")) {
+                holder.iconImageView.setImageResource(R.drawable.notification_event);
+            } else if (notification.getNotificationType().equals("announcement")) {
+                holder.iconImageView.setImageResource(R.drawable.notification_announcement);
+            }
+            holder.titleTextView.setText(notification.getNotificationTitle());
+            holder.contentTextView.setText(notification.getNotificationContent());
         }
-        holder.titleTextView.setText(notification.getNotificationTitle());
-        holder.contentTextView.setText(notification.getNotificationContent());
-
     }
 
     @Override
