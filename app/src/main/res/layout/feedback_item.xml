@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="Event: "
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <TextView
@@ -42,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="Rating Counts: "
                 android:textSize="18sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <TextView
@@ -64,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="Rating Average: "
                 android:textSize="18sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <TextView
@@ -86,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:text="Feedback: "
                 android:textSize="18sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"/>
 
             <TextView
