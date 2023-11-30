@@ -205,18 +205,21 @@ public class EventsActivity extends AppCompatActivity {
         // find chronological reordering
         int length = eventDates.size();
         int[] reordering = new int[length];
+        for (int k=0; k<length; k++) {
+            reordering[k] = k;
+        }
         for (int i=0; i<length; i++) {
             for (int j=0; j<length-1; j++) {
                 if ((hashDate(eventDates.get(j)) + hashTime(eventTimes.get(j))) > (hashDate(eventDates.get(j+1)) + hashTime(eventTimes.get(j+1)))) {
-                    String temp;
-                    temp = eventDates.get(j);
+                    String tempStr = eventDates.get(j);
                     eventDates.remove(j);
-                    eventDates.add(j+1,temp);
-                    temp = eventTimes.get(j);
+                    eventDates.add(j+1,tempStr);
+                    tempStr = eventTimes.get(j);
                     eventTimes.remove(j);
-                    eventTimes.add(j+1,temp);
-                    reordering[j] = j+1;
-                    reordering[j+1] = j;
+                    eventTimes.add(j+1,tempStr);
+                    int tempInt = reordering[j];
+                    reordering[j] = reordering[j+1];
+                    reordering[j+1] = tempInt;
                 }
             }
         }
