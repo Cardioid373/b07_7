@@ -2,12 +2,15 @@ package com.example.demoapplication;
 
 public class Complaints {
     private String complaintText;
+    private String complaintName;
+    private long index;
 
-    // Required default constructor for Firebase
     public Complaints() {
     }
 
-    public Complaints(String complaintText) {
+    public Complaints(long index, String complaintName, String complaintText) {
+        this.index = index;
+        this.complaintName = complaintName;
         this.complaintText = complaintText;
     }
 
@@ -17,5 +20,21 @@ public class Complaints {
 
     public void setComplaintText(String complaintText) {
         this.complaintText = complaintText;
+    }
+
+    public String getComplaintName() {
+        return this.complaintName;
+    }
+
+    public void setComplaintName(String complaintName) {
+        this.complaintName = complaintName;
+    }
+
+    public long getIndex() {
+        return index;
+    }
+
+    public void setIndex(long index) {
+        this.index = index;
     }
 }

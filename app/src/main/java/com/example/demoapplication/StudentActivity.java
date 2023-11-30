@@ -4,17 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StudentActivity extends AppCompatActivity {
+    public static String currUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-
+        TextView topText = findViewById(R.id.topText);
+        topText.setText("Welcome back " + MainActivity.currentUser + "!");
         Button btnComplaints = findViewById(R.id.studentComplaintsButton);
         Button btnLogout = findViewById(R.id.studentLogoutButton);
         Button btnPost = findViewById(R.id.studentPostButton);
@@ -34,7 +39,7 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Jump to complaints page
-                startActivity(new Intent(StudentActivity.this, StudentComplaintsActivity.class));
+                startActivity(new Intent(StudentActivity.this, StudentNewComplaintActivity.class));
                 finish();
             }
         });

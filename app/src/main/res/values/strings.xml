@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Demo Application</string>
-    <string name="blank_activity_title">Blank Activity</string>
+    <string name="student_activity_title">Student Activity</string>
+    <string name="student_complaint_activity_title">Student Complaint Activity</string>
+    <string name="student_new_complaint_activity_title">Student New Complaint Activity</string>
+    <string name="student_events_activity_title">Student Events Activity</string>
 
     <string name="YesButton">Yes</string>
     <string name="NoButton">No</string>
@@ -108,5 +111,7 @@
     <!-- Events Activity messages -->
     <string name="no_rating_message">No one has rated yet</string>
     <string name="no_feedback_message">No feedback at the moment</string>
+
+    <string name="button_Round">100dp</string>
 
 </resources>

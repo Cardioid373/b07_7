@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.demoapplication">
     <!-- Permissions -->
@@ -41,50 +40,50 @@
         <!-- Student Activity -->
         <activity
             android:name=".StudentActivity"
-            android:label="@string/blank_activity_title"
-            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity> <!-- Student Complaints Activity -->
-        <activity
-            android:name=".StudentComplaintsActivity"
-            android:label="@string/blank_activity_title"
-            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity> <!-- Student New Complaint Activity -->
+            android:label="@string/student_activity_title">
+        </activity>
+
+        <!-- Student New Complaint Activity -->
         <activity
             android:name=".StudentNewComplaintActivity"
-            android:label="@string/blank_activity_title"
-            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
-        </activity> <!-- Student Past Complaints Activity -->
-        <activity
-            android:name=".StudentPastComplaintsActivity"
-            android:label="@string/blank_activity_title"
-            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
+            android:label="@string/student_new_complaint_activity_title">
         </activity>
+
+        <!-- Register Activity -->
         <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".AdminLoginActivity"
-            android:label="Admin Login" />
+
+        <!-- Complaint Activity -->
+        <activity android:name=".ComplaintActivity" />
+
+        <!-- Admin Login Activity -->
+        
+
+        <!-- Create Event Activity -->
         <activity
             android:name=".CreateEventActivity"
-            android:label="Create Event" />
+            android:label="Create Event">
+        </activity>
+
+        <!-- Admin Home Activity -->
         <activity android:name=".AdminHomeActivity" />
 
         <!-- Post Activity -->
         <activity
-            android:name=".PostActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".PostActivity">
         </activity>
 
-        <!-- Student Events Activity -->
+        <!-- Events Activity -->
         <activity
             android:name=".EventsActivity"
-            android:label="@string/blank_activity_title"
-            android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
+            android:label="@string/student_events_activity_title">
         </activity>
+
+        <!-- Admin Announcement Activity -->
+        <activity
+            android:name=".WriteAnnouncementActivity"
+            android:label="Write Activity">
+        </activity>
+
     </application>
 
 </manifest>

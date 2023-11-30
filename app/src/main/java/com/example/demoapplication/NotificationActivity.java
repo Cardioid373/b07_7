@@ -37,9 +37,16 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
 
         Button btnNotificationBack = findViewById(R.id.NotificationBackButton);
 
+        // Instantiate the NotificationCreator
+        NotificationCreator notificationCreator = new NotificationCreator();
+
+        // Call the methods to create notifications
+        notificationCreator.createEventNotifications();
+        notificationCreator.createAnnouncementNotifications();
+
         notificationRef = FirebaseDatabase.getInstance().getReference("notifications");
         eventRef = FirebaseDatabase.getInstance().getReference("events");
-        announcementRef = FirebaseDatabase.getInstance().getReference("announcements");
+        announcementRef = FirebaseDatabase.getInstance().getReference("adminAnnouncements");
 
         recyclerView = findViewById(R.id.Notifications);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -94,7 +101,7 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
                 // Create a corresponding notification in the Notifications list
                 String announcementTitle = dataSnapshot.child("title").getValue(String.class);
-                String announcementContent = dataSnapshot.child("content").getValue(String.class);
+                String announcementContent = dataSnapshot.child("body").getValue(String.class);
 
                 // Push the new notification to the Notifications list
                 if (announcementTitle != null) {
