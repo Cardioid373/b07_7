@@ -56,10 +56,7 @@
         <activity android:name=".ComplaintActivity" />
 
         <!-- Admin Login Activity -->
-        <activity
-            android:name=".AdminLoginActivity"
-            android:label="Admin Login">
-        </activity>
+        
 
         <!-- Create Event Activity -->
         <activity
