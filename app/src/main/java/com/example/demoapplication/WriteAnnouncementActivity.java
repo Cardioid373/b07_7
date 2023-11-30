@@ -8,14 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -90,8 +85,14 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
         Announcement announcement = new Announcement(title, currentDate, currentTime, body, author);
         DatabaseReference adminAnnouncementsRef = FirebaseDatabase.getInstance().getReference("adminAnnouncements");
 
-        // set the value of our announcement object a unique key for the announcement
+        // generate unique key and set it as the value of our announcement object in our database
         String announcementKey = adminAnnouncementsRef.push().getKey();
+
+        if (announcementKey == null) {
+            Log.e("WriteAnnouncement", "Error: announcementKey is null");
+            Toast.makeText(WriteAnnouncementActivity.this, "Database Error: Failed to post announcement", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         adminAnnouncementsRef.child(announcementKey).setValue(announcement)
                 .addOnCompleteListener(task -> {
