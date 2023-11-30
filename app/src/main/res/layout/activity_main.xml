@@ -41,16 +41,21 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <Button
-        style="@style/buttonStyle"
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="54dp" />
+        android:layout_height="17dp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I am an administrator   "
+        tools:textAlignment="viewEnd" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="37dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,13 +80,13 @@
             android:layout_weight="0" />
 
         <Button
-            android:id="@+id/btnAdminLogin"
+            android:id="@+id/loginButton"
             style="@style/buttonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:minWidth="1dp"
-            android:text="ADMIN LOGIN" />
+            android:text="     LOGIN     " />
+
+
     </LinearLayout>
 
     <Space
