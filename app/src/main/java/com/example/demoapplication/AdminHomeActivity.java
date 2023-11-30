@@ -20,7 +20,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         Button btnComplaints = findViewById(R.id.btnComplaints);
         Button btnLogout = findViewById(R.id.btnlogOut);
         TextView topText = findViewById(R.id.topText);
-        topText.setText("Welcome back " + AdminLoginActivity.currentUser + "!");
+        topText.setText("Welcome back " + MainActivity.currentUser + "!");
 
         btnEvents.setOnClickListener(new View.OnClickListener() {
             @Override
