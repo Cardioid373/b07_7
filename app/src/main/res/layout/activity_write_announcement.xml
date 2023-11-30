@@ -26,14 +26,15 @@
             android:layout_marginBottom="8dp"
             android:text="Subject:"
             android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editAnnouncementTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:textSize="24sp" />
+            android:textSize="30sp" />
     </LinearLayout>
 
     <EditText
@@ -41,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginTop="8dp"
-        android:hint="Body"
+        android:hint="Announcement"
         android:textAlignment="center"
         android:inputType="textMultiLine"
         android:textSize="34sp" />
@@ -52,5 +53,13 @@
         android:layout_height="79dp"
         android:layout_marginTop="16dp"
         android:text="Post Announcement"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/announcementBackBtn"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/BackButton"
         android:textSize="24sp" />
 </LinearLayout>
