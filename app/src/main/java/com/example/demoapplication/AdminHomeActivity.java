@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminHomeActivity extends AppCompatActivity {
-
+    public static String currUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +19,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         Button btnEvents = findViewById(R.id.btnEvents);
         Button btnComplaints = findViewById(R.id.btnComplaints);
         Button btnLogout = findViewById(R.id.btnlogOut);
+        TextView topText = findViewById(R.id.topText);
+        topText.setText("Welcome back " + AdminLoginActivity.currentUser + "!");
 
         btnEvents.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,14 +7,16 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
+    android:background="@color/backgroundC"
     tools:context=".AdminLoginActivity">
 
     <TextView
         android:id="@+id/textViewAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin Login Below:"
+        android:text="Admin Login:"
         android:textAlignment="center"
+        android:textColor="@color/textViewTextC"
         android:textSize="34sp" />
 
     <Space
@@ -22,11 +24,15 @@
         android:layout_height="20dp" />
 
     <EditText
-        android:id="@+id/adminEmailEditText"
+        android:id="@+id/adminNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Admin Username"
         android:inputType="textEmailAddress" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <EditText
         android:id="@+id/adminPasswordEditText"
@@ -36,6 +42,7 @@
         android:inputType="textPassword" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/adminLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,10 +54,15 @@
         android:layout_height="20dp" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/btnGoBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go Back" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="245dp" />
 
 
 </LinearLayout>

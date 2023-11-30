@@ -112,4 +112,6 @@
     <string name="no_rating_message">No one has rated yet</string>
     <string name="no_feedback_message">No feedback at the moment</string>
 
+    <string name="button_Round">100dp</string>
+
 </resources>
