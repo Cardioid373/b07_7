@@ -34,7 +34,16 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textSize="18sp" />
+
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/editAnnouncementAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Name"
+        android:maxLines="1"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/editAnnouncementBody"

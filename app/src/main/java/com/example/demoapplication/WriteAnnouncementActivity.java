@@ -19,6 +19,7 @@ import java.util.Locale;
 public class WriteAnnouncementActivity extends AppCompatActivity {
 
     private EditText editAnnouncementTitle;
+    private EditText editAnnouncementAuthor;
     private EditText editAnnouncementBody;
     private Button announcementPostBtn;
     private Button announcementBackBtn;
@@ -30,6 +31,7 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_write_announcement);
 
         editAnnouncementTitle = findViewById(R.id.editAnnouncementTitle);
+        editAnnouncementAuthor = findViewById(R.id.editAnnouncementAuthor);
         editAnnouncementBody = findViewById(R.id.editAnnouncementBody);
         announcementPostBtn = findViewById((R.id.announcementPostBtn));
         announcementBackBtn = findViewById(R.id.announcementBackBtn);
@@ -52,12 +54,13 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
     }
 
     protected void createAnnouncement(){
-        // Retrieve Title and Body
+        // Retrieve Title, Author and Body
         String title = editAnnouncementTitle.getText().toString();
+        String author = editAnnouncementAuthor.getText().toString();
         String body = editAnnouncementBody.getText().toString();
 
-        if (title.isEmpty() || body.isEmpty()) {
-            Toast.makeText(WriteAnnouncementActivity.this, "Subject or body cannot be empty", Toast.LENGTH_SHORT).show();
+        if (title.isEmpty() || author.isEmpty() || body.isEmpty()) {
+            Toast.makeText(WriteAnnouncementActivity.this, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -78,9 +81,6 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
             return;
         }
 
-        // Retrieve Author (admin username)
-        String author = "Darren";
-
         //Instantiate announcement object and add to database
         Announcement announcement = new Announcement(title, currentDate, currentTime, body, author);
         DatabaseReference adminAnnouncementsRef = FirebaseDatabase.getInstance().getReference("adminAnnouncements");
@@ -90,7 +90,7 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
 
         if (announcementKey == null) {
             Log.e("WriteAnnouncement", "Error: announcementKey is null");
-            Toast.makeText(WriteAnnouncementActivity.this, "Database Error: Failed to post announcement", Toast.LENGTH_SHORT).show();
+            Toast.makeText(WriteAnnouncementActivity.this, "Database Error: Failed to generate key", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -103,5 +103,6 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
                         Toast.makeText(WriteAnnouncementActivity.this, "Failed to post announcement", Toast.LENGTH_SHORT).show();
                     }
                 });
+        finish();
     }
 }
