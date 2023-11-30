@@ -49,7 +49,7 @@ public class LoginActivityView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean isAdmin = isAdminSwitch.isChecked();
-                currentUser = getName.getText().toString();
+                setCurrentUser(getName.getText().toString());
                 if (isAdmin == false) {
                     presenter.checkUser(getName.getText().toString(), getPassword.getText().toString());
                 } else {
@@ -71,5 +71,9 @@ public class LoginActivityView extends AppCompatActivity {
 
     public void toast(String message) {
         Toast.makeText(LoginActivityView.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void setCurrentUser(String name) {
+        currentUser = name;
     }
 }
