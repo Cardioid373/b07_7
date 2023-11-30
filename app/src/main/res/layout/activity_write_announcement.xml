@@ -1,0 +1,56 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/announcementIntroMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Post a New Announcement"
+        android:textColor="#E91E63"
+        android:textSize="60dp"
+        android:underlineText="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:text="Subject:"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editAnnouncementTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editAnnouncementBody"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="8dp"
+        android:hint="Body"
+        android:textAlignment="center"
+        android:inputType="textMultiLine"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/announcementPostBtn"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:layout_marginTop="16dp"
+        android:text="Post Announcement"
+        android:textSize="24sp" />
+</LinearLayout>
