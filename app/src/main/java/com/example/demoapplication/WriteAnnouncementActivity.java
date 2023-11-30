@@ -57,27 +57,50 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
     }
 
     protected void createAnnouncement(){
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
-
-        String currentDate = dateFormat.format(calendar.getTime());
-        String currentTime = timeFormat.format(calendar.getTime());
-
+        // Retrieve Title and Body
         String title = editAnnouncementTitle.getText().toString();
         String body = editAnnouncementBody.getText().toString();
 
+        if (title.isEmpty() || body.isEmpty()) {
+            Toast.makeText(WriteAnnouncementActivity.this, "Subject or body cannot be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Retrieve Date and Time
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.getDefault());
+        String currentDate;
+        String currentTime;
+
+        try {
+            currentDate = dateFormat.format(calendar.getTime());
+            currentTime = timeFormat.format(calendar.getTime());
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            Toast.makeText(WriteAnnouncementActivity.this, "Error formatting date or time", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Retrieve Author (admin username)
         String author = "Darren";
 
+        //Instantiate announcement object and add to database
         Announcement announcement = new Announcement(title, currentDate, currentTime, body, author);
-
         DatabaseReference adminAnnouncementsRef = FirebaseDatabase.getInstance().getReference("adminAnnouncements");
 
         // set the value of our announcement object a unique key for the announcement
         String announcementKey = adminAnnouncementsRef.push().getKey();
-        adminAnnouncementsRef.child(announcementKey).setValue(announcement);
 
-        Toast.makeText(WriteAnnouncementActivity.this, "Announcement posted", Toast.LENGTH_SHORT).show();
-
+        adminAnnouncementsRef.child(announcementKey).setValue(announcement)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(WriteAnnouncementActivity.this, "Announcement posted", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.e("WriteAnnouncement", "Error posting announcement", task.getException());
+                        Toast.makeText(WriteAnnouncementActivity.this, "Failed to post announcement", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
