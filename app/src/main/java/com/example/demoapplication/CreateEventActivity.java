@@ -83,8 +83,8 @@ public class CreateEventActivity extends AppCompatActivity {
         int year = datePicker.getYear();
         int month = datePicker.getMonth() + 1;
         int day = datePicker.getDayOfMonth();
-        int hour = timePicker.getCurrentHour();
-        int minute = timePicker.getCurrentMinute();
+        int hour = timePicker.getHour();
+        int minute = timePicker.getMinute();
 
         String selectedDate = String.format("%04d-%02d-%02d", year, month, day);
         String selectedTime = String.format("%02d:%02d", hour, minute);
