@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
         TextView topText = findViewById(R.id.topText);
-        topText.setText("Welcome back " + MainActivity.currentUser + "!");
+        topText.setText("Welcome back " + LoginActivityView.currentUser + "!");
         Button btnComplaints = findViewById(R.id.studentComplaintsButton);
         Button btnLogout = findViewById(R.id.studentLogoutButton);
         Button btnPost = findViewById(R.id.studentPostButton);
@@ -66,7 +65,7 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Return to login page
-                startActivity(new Intent(StudentActivity.this, MainActivity.class));
+                startActivity(new Intent(StudentActivity.this, LoginActivityView.class));
                 finish();
                 Toast.makeText(StudentActivity.this, "Logout successful!", Toast.LENGTH_SHORT).show();
             }

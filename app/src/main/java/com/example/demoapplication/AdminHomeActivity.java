@@ -20,7 +20,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         Button btnComplaints = findViewById(R.id.btnComplaints);
         Button btnLogout = findViewById(R.id.btnlogOut);
         TextView topText = findViewById(R.id.topText);
-        topText.setText("Welcome back " + MainActivity.currentUser + "!");
+        topText.setText("Welcome back " + LoginActivityView.currentUser + "!");
 
         btnEvents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminHomeActivity.this, MainActivity.class));
+                startActivity(new Intent(AdminHomeActivity.this, LoginActivityView.class));
                 finish();
                 Toast.makeText(AdminHomeActivity.this, "Logout successful!", Toast.LENGTH_SHORT).show();
             }
