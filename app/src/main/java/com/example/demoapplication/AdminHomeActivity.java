@@ -34,6 +34,8 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminHomeActivity.this, WriteAnnouncementActivity.class));
+            }
+        });
         btnComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
