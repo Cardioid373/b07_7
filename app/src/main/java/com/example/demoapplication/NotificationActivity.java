@@ -101,7 +101,11 @@ public class NotificationActivity extends AppCompatActivity implements Notificat
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
                 // Create a corresponding notification in the Notifications list
                 String announcementTitle = dataSnapshot.child("title").getValue(String.class);
-                String announcementContent = dataSnapshot.child("body").getValue(String.class);
+                String announcementDate = dataSnapshot.child("date").getValue(String.class);
+                String announcementTime = dataSnapshot.child("time").getValue(String.class);
+                String announcementBody = dataSnapshot.child("body").getValue(String.class);
+
+                String announcementContent = "Time: " + announcementDate + " " + announcementTime + "\n" + announcementBody;
 
                 // Push the new notification to the Notifications list
                 if (announcementTitle != null) {

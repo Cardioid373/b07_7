@@ -51,7 +51,11 @@ public class NotificationCreator {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot announcementSnapshot : dataSnapshot.getChildren()) {
                     String announcementTitle = announcementSnapshot.child("title").getValue(String.class);
-                    String announcementContent = announcementSnapshot.child("body").getValue(String.class);
+                    String announcementDate = announcementSnapshot.child("date").getValue(String.class);
+                    String announcementTime = announcementSnapshot.child("time").getValue(String.class);
+                    String announcementBody = announcementSnapshot.child("body").getValue(String.class);
+
+                    String announcementContent = "Time: " + announcementDate + " " + announcementTime + "\n" + announcementBody;
                     // Push the new notification to the Notifications list
                     notificationRef.child(announcementTitle).setValue(new Notification("announcement", announcementTitle, announcementContent));
                 }
