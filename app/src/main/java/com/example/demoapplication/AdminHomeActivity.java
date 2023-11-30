@@ -16,6 +16,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
+        Button btnPostAnnouncement = findViewById(R.id.btnPostAnnouncement);
         Button btnEvents = findViewById(R.id.btnEvents);
         Button btnComplaints = findViewById(R.id.btnComplaints);
         Button btnLogout = findViewById(R.id.btnlogOut);
@@ -29,6 +30,12 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
 
+        btnPostAnnouncement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomeActivity.this, WriteAnnouncementActivity.class));
+            }
+        });
         btnComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

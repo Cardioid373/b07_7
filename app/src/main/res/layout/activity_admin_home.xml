@@ -63,6 +63,14 @@
         app:layout_constraintVertical_bias="0.315" />
 
     <Button
+        android:id="@+id/btnPostAnnouncement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Post New Announcement" />
+
+    <Button
 
         android:id="@+id/btnlogOut"
         style="@style/buttonStyle"

@@ -78,6 +78,12 @@
             android:label="@string/student_events_activity_title">
         </activity>
 
+        <!-- Admin Announcement Activity -->
+        <activity
+            android:name=".WriteAnnouncementActivity"
+            android:label="Write Activity">
+        </activity>
+
     </application>
 
 </manifest>
