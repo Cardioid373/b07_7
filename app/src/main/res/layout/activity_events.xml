@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top"
+    android:background="@color/backgroundC"
     android:orientation="vertical">
 
 
@@ -12,6 +13,7 @@
 
     <TextView
         android:id="@+id/eventName"
+        android:textColor="@color/textViewTextC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/eventName"
@@ -26,6 +28,7 @@
 
     <TextView
         android:id="@+id/eventDepartment"
+        android:textColor="@color/textViewTextC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/eventDepartment"
@@ -40,6 +43,7 @@
 
     <TextView
         android:id="@+id/eventLocation"
+        android:textColor="@color/textViewTextC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/eventLocation"
@@ -54,6 +58,7 @@
 
     <TextView
         android:id="@+id/eventDateTime"
+        android:textColor="@color/textViewTextC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/eventDateTime"
@@ -68,6 +73,7 @@
 
     <TextView
         android:id="@+id/eventDescription"
+        android:textColor="@color/textViewTextC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -111,6 +117,7 @@
         app:layout_constraintTop_toBottomOf="@id/attendSwitch" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/leftButton"
         android:layout_width="107dp"
         android:layout_height="wrap_content"
@@ -122,6 +129,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rsvpSwitch" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/rightButton"
         android:layout_width="107dp"
         android:layout_height="wrap_content"
@@ -139,6 +147,8 @@
         android:layout_marginTop="70dp"
         android:scaleX="0.87"
         android:scaleY="0.87"
+        android:progressBackgroundTint="#d3d3d3"
+        android:progressTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,6 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/reviewRatingBar" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/reviewEventButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -170,6 +181,7 @@
         app:layout_constraintTop_toBottomOf="@+id/reviewEditText" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/backButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"

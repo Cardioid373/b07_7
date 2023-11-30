@@ -1,33 +1,96 @@
 <!-- res/layout/activity_student.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
 
-    <!-- Add UI elements for StudentActivity here -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/backgroundC"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/topText"
+        android:textColor="@color/textViewTextC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/studentNotificationsButton"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/_119338_2"
+        android:text="  Notifications  "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253" />
 
     <Button
         android:id="@+id/studentPostButton"
-        android:layout_width="match_parent"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post" />
+        android:layout_columnWeight="1"
+        android:drawableBottom="@drawable/posticonblack"
+        android:text="    Check Post    "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.64" />
 
     <Button
         android:id="@+id/studentEventsButton"
-        android:layout_width="match_parent"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Events" />
+        android:layout_columnWeight="1"
+        android:drawableBottom="@drawable/eventiconblack"
+        android:text="        Events       "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.899"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253" />
 
     <Button
         android:id="@+id/studentComplaintsButton"
-        android:layout_width="match_parent"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Make us better" />
+        android:layout_columnWeight="1"
+        android:drawableBottom="@drawable/ratingiconblack"
+        android:text="Make us better"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.64" />
 
     <Button
         android:id="@+id/studentLogoutButton"
-        android:layout_width="match_parent"
+        style="@style/buttonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log out" />
-</LinearLayout>
+        android:layout_gravity="center"
+        android:text="Log out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topText"
+        app:layout_constraintVertical_bias="0.913" />
+</androidx.constraintlayout.widget.ConstraintLayout>

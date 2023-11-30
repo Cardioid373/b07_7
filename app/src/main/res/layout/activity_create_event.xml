@@ -1,8 +1,8 @@
-<!-- res/layout/activity_create_event.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundC"
     tools:context=".CreateEventActivity">
 
     <ScrollView
@@ -15,12 +15,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Button
+                style="@style/buttonStyle"
+                android:id="@+id/btnBackToHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center"
+                android:text="Back to Home" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create a new event below:"
+                android:textColor="@color/textViewTextC"
+                android:textSize="28sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
             <EditText
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Event Name"
                 android:inputType="text" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/editTextDescription"
@@ -29,9 +64,15 @@
                 android:hint="Event Description"
                 android:inputType="textMultiLine" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
             <Button
                 android:id="@+id/buttonPickDate"
-                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                style="@style/buttonStyle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pick Date" />
 
@@ -42,9 +83,15 @@
                 android:calendarViewShown="false"
                 android:visibility="gone" />
 
-            <Button
-                android:id="@+id/buttonPickTime"
+            <Space
                 android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Button
+                style="@style/buttonStyle"
+                android:layout_gravity="center"
+                android:id="@+id/buttonPickTime"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pick Time" />
 
@@ -55,12 +102,20 @@
                 android:layout_gravity="center"
                 android:visibility="gone" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
             <EditText
                 android:id="@+id/editTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Event Location"
                 android:inputType="text" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/editTextMaxLimit"
@@ -69,6 +124,10 @@
                 android:hint="Max Limit of People"
                 android:inputType="number" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
             <EditText
                 android:id="@+id/editTextDepartment"
                 android:layout_width="match_parent"
@@ -76,11 +135,18 @@
                 android:hint="Event Department"
                 android:inputType="text" />
 
-            <Button
-                android:id="@+id/buttonCreateEvent"
+            <Space
                 android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Button
+                style="@style/buttonStyle"
+                android:layout_gravity="center"
+                android:id="@+id/buttonCreateEvent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Create Event" />
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>

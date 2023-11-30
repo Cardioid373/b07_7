@@ -6,13 +6,16 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@color/backgroundC"
     tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login:"
+        android:textColor="@color/textViewTextC"
         android:textAlignment="center"
         android:textSize="34sp" />
 
@@ -21,43 +24,73 @@
         android:layout_height="36dp" />
 
     <EditText
-        android:id="@+id/emailEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/nameEditText"
+        android:layout_width="370dp"
+        android:layout_height="60dp"
         android:hint="Email"
         android:inputType="textEmailAddress" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="370dp"
+        android:layout_height="60dp"
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="54dp" />
+        android:layout_height="17dp" />
 
-    <Button
-        android:id="@+id/btnGoToRegister"
+    <Switch
+        android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="I am an administrator   "
+        tools:textAlignment="viewEnd" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="85dp" />
+        android:layout_height="37dp" />
 
-    <Button
-        android:id="@+id/btnAdminLogin"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin Login" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/backgroundC"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnGoToRegister"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:minWidth="130dp"
+            android:text="REGISTER" />
+
+        <Space
+            android:layout_width="75dp"
+            android:layout_height="24dp"
+            android:layout_weight="0" />
+
+        <Button
+            android:id="@+id/loginButton"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="     LOGIN     " />
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="171dp" />
 
 </LinearLayout>
