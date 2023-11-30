@@ -78,6 +78,11 @@
             android:launchMode="singleTop"> <!-- or "singleTask" or "singleInstance" -->
         </activity>
 
+        <!-- Admin Announcement Activity -->
+        <activity
+            android:name=".WriteAnnouncementActivity"
+            android:label="Write Activity">
+        </activity>
 
     </application>
 

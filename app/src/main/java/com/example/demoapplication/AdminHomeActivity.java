@@ -13,10 +13,18 @@ public class AdminHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_home);
 
         Button btnAnnouncements = findViewById(R.id.btnEvents);
+        Button btnPostAnnouncement = findViewById(R.id.btnPostAnnouncement);
         btnAnnouncements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminHomeActivity.this, CreateEventActivity.class));
+            }
+        });
+
+        btnPostAnnouncement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomeActivity.this, WriteAnnouncementActivity.class));
             }
         });
     }

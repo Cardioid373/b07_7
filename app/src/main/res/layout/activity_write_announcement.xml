@@ -12,8 +12,7 @@
         android:fontFamily="sans-serif-black"
         android:text="Post a New Announcement"
         android:textColor="#E91E63"
-        android:textSize="60dp"
-        android:underlineText="true" />
+        android:textSize="50dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

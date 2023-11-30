@@ -1,17 +1,36 @@
 <!-- res/layout/activity_admin_home.xml -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".AdminHomeActivity">
+
+    <TextView
+        android:id="@+id/adminIntroMsg"
+        android:layout_width="match_parent"
+        android:layout_height="300sp"
+        android:fontFamily="sans-serif-black"
+        android:text="ADMIN HOME PAGE"
+        android:textColor="#E91E63"
+        android:textSize="34sp"/>
 
     <Button
         android:id="@+id/btnEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Events"
-        android:layout_centerInParent="true"
-        android:onClick="goToCreateEventPage" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="goToCreateEventPage"
+        android:text="Events" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnPostAnnouncement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Post New Announcement" />
+
+</LinearLayout>
