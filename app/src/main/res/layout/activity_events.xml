@@ -90,31 +90,35 @@
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:background="@color/teal_700"
+        android:background="@color/purple_500"
         android:padding="7dp"
         android:text="@string/attend_switch_text"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/rsvpSwitch"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventDescription" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventDescription"
+        app:thumbTint="@color/buttonC"
+        app:trackTint="@color/white" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/rsvpSwitch"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:background="@color/teal_700"
+        android:background="@color/purple_500"
         android:padding="7dp"
         android:text="@string/rsvp_switch_text"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/attendSwitch" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/attendSwitch"
+        app:thumbTint="@color/buttonC"
+        app:trackTint="@color/white" />
 
     <Button
         style="@style/buttonStyle"
