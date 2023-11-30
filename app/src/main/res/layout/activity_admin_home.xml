@@ -1,41 +1,83 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".AdminHomeActivity">
+    android:background="@color/backgroundC"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/topText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083"
+        android:textColor="@color/textViewTextC"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnEvents"
-        android:layout_width="match_parent"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Events"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="16dp"/>
+        android:drawableBottom="@drawable/eventiconblack"
+        android:text=" Create Events"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315" />
 
     <Button
         android:id="@+id/btnComplaints"
-        android:layout_width="match_parent"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Complaints"
-        android:layout_below="@id/btnEvents"
-        android:layout_marginBottom="16dp"
-        android:layout_centerVertical="true"/>
-
-
-    <Button
-        android:id="@+id/btnlogOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:layout_below="@id/btnComplaints"
-        android:layout_centerVertical="true"/>
+        android:layout_columnWeight="1"
+        android:drawableBottom="@drawable/ratingiconblack"
+        android:text="View Complaints"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683" />
 
     <Button
         android:id="@+id/EventFeedback"
-        android:layout_width="match_parent"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Event Feedback" />
+        android:drawableBottom="@drawable/eventfeedbackiconblack"
+        android:text="Event Feedback"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315" />
 
-</RelativeLayout>
+    <Button
+
+        android:id="@+id/btnlogOut"
+        style="@style/buttonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnComplaints"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:text="Log Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.919" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

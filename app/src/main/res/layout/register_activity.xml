@@ -5,13 +5,15 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
+    android:background="@color/backgroundC"
     tools:context=".RegisterActivity">
 
     <TextView
         android:id="@+id/textView2"
+        android:textColor="@color/textViewTextC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register Below:"
+        android:text="Please Register Below:"
         android:textAlignment="center"
         android:textSize="34sp" />
 
@@ -31,7 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textSize="18sp" />
 
     <Switch
         android:id="@+id/switchUserType"
@@ -41,6 +44,7 @@
         android:text="Register as Admin" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,11 +52,16 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="74dp" />
+        android:layout_height="51dp" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/goBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back To Login Page" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="169dp" />
 </LinearLayout>

@@ -1,33 +1,40 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/backgroundC"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/newComplaintSubjectText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Subject"
-        android:inputType="textMultiLine"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/newComplaintText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/newComplaintSubmitButton"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Tell us how we can improve below:"
+        android:textAlignment="center"
+        android:textColor="@color/textViewTextC"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/newComplaintSubjectText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newComplaintText"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.415" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Thank you for taking the time to tell us what we can do better. Rest assured that these complaints are 100% anonymous and cannot be traced back to you in any way."
+        android:textAlignment="center"
+        android:textColor="@color/textViewTextC"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/newComplaintSubjectText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.893" />
 
     <EditText
         android:id="@+id/newComplaintText"
@@ -43,16 +50,44 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.192" />
+        app:layout_constraintVertical_bias="0.623" />
 
     <Button
-        android:id="@+id/newComplaintBackButton"
+        android:id="@+id/newComplaintSubmitButton"
+        style="@style/buttonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:text="Back"
+        android:layout_marginEnd="40dp"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newComplaintText"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintVertical_bias="0.117" />
+
+    <EditText
+        android:id="@+id/newComplaintSubjectText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Subject"
+        android:inputType="textMultiLine"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/newComplaintText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/newComplaintBackButton"
+        style="@style/buttonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newComplaintText"
+        app:layout_constraintVertical_bias="0.117" />
 </androidx.constraintlayout.widget.ConstraintLayout>

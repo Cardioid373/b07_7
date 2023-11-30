@@ -16,22 +16,25 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AdminLoginActivity extends AppCompatActivity {
     private DatabaseReference adminDatabaseReference;
+
+    static String currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminlogin);
         adminDatabaseReference = FirebaseDatabase.getInstance().getReference("admins");
 
-        EditText adminEmailEditText = findViewById(R.id.adminEmailEditText);
+        EditText adminNameEditText = findViewById(R.id.adminNameEditText);
         EditText adminPasswordEditText = findViewById(R.id.adminPasswordEditText);
         Button adminLoginButton = findViewById(R.id.adminLoginButton);
 
         adminLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = adminEmailEditText.getText().toString();
+                String name = adminNameEditText.getText().toString();
                 String password = adminPasswordEditText.getText().toString();
-                checkAdmin(email, password);
+                currentUser = adminNameEditText.getText().toString();
+                checkAdmin(name, password);
             }
         });
 
@@ -45,8 +48,8 @@ public class AdminLoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkAdmin(final String email, final String password) {
-        adminDatabaseReference.child(email).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void checkAdmin(final String name, final String password) {
+        adminDatabaseReference.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -55,10 +58,10 @@ public class AdminLoginActivity extends AppCompatActivity {
                         Toast.makeText(AdminLoginActivity.this, "Admin login successful!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(AdminLoginActivity.this, AdminHomeActivity.class));
                     } else {
-                        Toast.makeText(AdminLoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminLoginActivity.this, "Incorrect user or password", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(AdminLoginActivity.this, "Admin does not exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminLoginActivity.this, "Incorrect user or password", Toast.LENGTH_SHORT).show();
                 }
             }
 
