@@ -11,10 +11,12 @@ public class Event {
     private int numRatings;
     private String department;
 
+    private String timeCreated;
+
     public Event() {
     }
 
-    public Event(String name, String date, String time, String location, String department, String description, int maxLimit, float averageRating, int numRatings) {
+    public Event(String name, String date, String time, String location, String department, String description, int maxLimit, float averageRating, int numRatings, String timeCreated) {
         this.name = name;
         this.date = date;
         this.time = time;
@@ -24,12 +26,17 @@ public class Event {
         this.maxLimit = maxLimit;
         this.averageRating = averageRating;
         this.numRatings = numRatings;
+        this.timeCreated = timeCreated;
     }
 
 
 
     public String getName() {
         return name;
+    }
+
+    public String getTimeCreated() {
+        return timeCreated;
     }
 
     public String getDate() {

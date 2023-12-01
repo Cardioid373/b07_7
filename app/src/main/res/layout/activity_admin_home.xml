@@ -43,7 +43,7 @@
         android:text="View Complaints"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.683" />
@@ -62,16 +62,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.315" />
 
+
     <Button
         android:id="@+id/btnPostAnnouncement"
-        android:layout_width="match_parent"
+        style="@style/homeButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Post New Announcement" />
+        android:layout_gravity="center"
+        android:drawableBottom="@drawable/makenewannoucementblack"
+        android:text="Announcements"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683" />
 
     <Button
-
         android:id="@+id/btnlogOut"
         style="@style/buttonStyle"
         android:layout_width="wrap_content"

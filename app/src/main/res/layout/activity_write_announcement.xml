@@ -3,16 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/backgroundC"
     android:padding="16dp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="41dp" />
 
     <TextView
         android:id="@+id/announcementIntroMsg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Post a New Announcement"
-        android:textColor="#E91E63"
-        android:textSize="28sp" />
+        android:text="Create a New Announcement:"
+        android:textColor="@color/textViewTextC"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,10 +57,11 @@
         android:layout_marginTop="8dp"
         android:hint="Announcement"
         android:inputType="textMultiLine"
-        android:textAlignment="center"
-        android:textSize="34sp" />
+        android:textAlignment="viewStart"
+        android:textSize="30sp" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/announcementPostBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,6 +70,7 @@
         android:textSize="20sp" />
 
     <Button
+        style="@style/buttonStyle"
         android:id="@+id/announcementBackBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

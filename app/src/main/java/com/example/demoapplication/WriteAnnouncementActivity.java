@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class WriteAnnouncementActivity extends AppCompatActivity {
@@ -81,8 +82,11 @@ public class WriteAnnouncementActivity extends AppCompatActivity {
             return;
         }
 
+        Date currentLocalTime = Calendar.getInstance().getTime();
+        String currLocalTimeString = currentLocalTime.toString();
+
         //Instantiate announcement object and add to database
-        Announcement announcement = new Announcement(title, currentDate, currentTime, body, author);
+        Announcement announcement = new Announcement(title, currentDate, currentTime, body, author, currLocalTimeString);
         DatabaseReference adminAnnouncementsRef = FirebaseDatabase.getInstance().getReference("adminAnnouncements");
 
         // generate unique key and set it as the value of our announcement object in our database

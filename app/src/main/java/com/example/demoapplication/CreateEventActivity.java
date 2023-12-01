@@ -1,6 +1,8 @@
 package com.example.demoapplication;
 
 import android.content.Intent;
+import java.util.Calendar;
+import java.util.Date;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -85,12 +87,14 @@ public class CreateEventActivity extends AppCompatActivity {
         int day = datePicker.getDayOfMonth();
         int hour = timePicker.getHour();
         int minute = timePicker.getMinute();
+        Date currentTime = Calendar.getInstance().getTime();
+        String currTime = currentTime.toString();
 
         String selectedDate = String.format("%04d-%02d-%02d", year, month, day);
         String selectedTime = String.format("%02d:%02d", hour, minute);
         Event event = new Event(
                 editTextName.getText().toString(), selectedDate, selectedTime, editTextLocation.getText().toString(),
-                editTextDepartment.getText().toString(), editTextDescription.getText().toString(), Integer.parseInt(editTextMaxLimit.getText().toString()), 0, 0
+                editTextDepartment.getText().toString(), editTextDescription.getText().toString(), Integer.parseInt(editTextMaxLimit.getText().toString()), 0, 0, currTime
 
         );
 
