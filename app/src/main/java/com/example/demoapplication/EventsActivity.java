@@ -1,12 +1,11 @@
 package com.example.demoapplication;
 
-import static com.example.demoapplication.MainActivity.currentUser;
+import static com.example.demoapplication.LoginActivityView.currentUser;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;

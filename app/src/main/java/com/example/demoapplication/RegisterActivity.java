@@ -11,9 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demoapplication.MainActivity;
-import com.example.demoapplication.R;
-import com.example.demoapplication.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                startActivity(new Intent(RegisterActivity.this, LoginActivityView.class));
                 finish();
             }
         });
@@ -108,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if (databaseError == null) {
                         Toast.makeText(RegisterActivity.this, "Registration successful! Please log in now.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                        startActivity(new Intent(RegisterActivity.this, LoginActivityView.class));
                         finish();
                     } else {
                         Toast.makeText(RegisterActivity.this, "Registration failed: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
@@ -125,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 if (databaseError == null) {
                     Toast.makeText(RegisterActivity.this, "Registration successful! Please log in now.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    startActivity(new Intent(RegisterActivity.this, LoginActivityView.class));
                     finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, "Registration failed: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
