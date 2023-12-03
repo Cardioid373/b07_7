@@ -3,6 +3,7 @@ package com.example.demoapplication;
 import static com.example.demoapplication.LoginActivityView.currentUser;
 
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -279,24 +280,26 @@ public class EventsActivity extends AppCompatActivity {
     }
 
     private void goToEventIndex(int eventIndex) {
+        // UI variables to allow for synced UI changes
         // set text of each textView
-        eventName.setText(eventNames.get(eventIndex));
-        eventDepartment.setText(eventDepartments.get(eventIndex));
-        eventLocation.setText(eventLocations.get(eventIndex));
-        eventDateTime.setText(eventDates.get(eventIndex) + " at " + eventTimes.get(eventIndex));
-        eventDescription.setText(eventDescriptions.get(eventIndex));
+        String eventNameText = eventNames.get(eventIndex);
+        String eventDepartmentText = eventDepartments.get(eventIndex);
+        String eventLocationText = eventLocations.get(eventIndex);
+        String eventDateTimeText = eventDates.get(eventIndex) + " at " + eventTimes.get(eventIndex);
+        String eventDescriptionText = eventDescriptions.get(eventIndex);
 
         // set visibility of left and right buttons
-        // complicated because i couldn't figure out how to put buttons side by side
+        int leftButtonVisible;
+        int rightButtonVisible;
         if (eventIndex == 0) {
-            leftButton.setVisibility(View.GONE);
+            leftButtonVisible = View.GONE;
         } else {
-            leftButton.setVisibility(View.VISIBLE);
+            leftButtonVisible = View.VISIBLE;
         }
         if (eventIndex == eventsTotal - 1) {
-            rightButton.setVisibility(View.GONE);
+            rightButtonVisible = View.GONE;
         } else {
-            rightButton.setVisibility(View.VISIBLE);
+            rightButtonVisible = View.VISIBLE;
         }
 
         // set visibility, state and text of the switches based off of database and date
@@ -304,40 +307,73 @@ public class EventsActivity extends AppCompatActivity {
         eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // UI variables
+                boolean attendSwitchState = false;
+                boolean rsvpSwitchState = false;
+                String attendSwitchText = new String();
+                int attendSwitchVisible;
+                int rsvpSwitchVisible;
+                int reviewRatingBarVisible;
+                int reviewEditTextVisible;
+                int reviewEventButtonVisible;
+                float reviewRatingBarRating = 0;
+                String reviewEditTextText = new String();
+
                 if (eventIndex >= nextChronologicalEventIndex) {
-                    attendSwitch.setVisibility(View.VISIBLE);
-                    rsvpSwitch.setVisibility(View.VISIBLE);
-                    attendSwitch.setChecked(snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).getValue() != null);
-                    rsvpSwitch.setChecked(snapshot.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).getValue() != null);
+                    attendSwitchVisible = View.VISIBLE;
+                    rsvpSwitchVisible = View.VISIBLE;
+                    attendSwitchState = (snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).getValue() != null);
+                    rsvpSwitchState = (snapshot.child(eventNames.get(eventIndex)).child("rsvpList").child(currentUser).getValue() != null);
                     currentEventCapacity = 0;
                     for (DataSnapshot child : snapshot.child(eventNames.get(eventIndex)).child("attendees").getChildren()) {
                         currentEventCapacity++;
                     }
-                    attendSwitch.setText("I want to attend this event! (" + currentEventCapacity + "/" + eventMaxLimits.get(eventIndex) + ")");
+                    attendSwitchText = "I want to attend this event! (" + currentEventCapacity + "/" + eventMaxLimits.get(eventIndex) + ")";
                 } else {
-                    attendSwitch.setVisibility(View.GONE);
-                    rsvpSwitch.setVisibility(View.GONE);
+                    attendSwitchVisible = View.GONE;
+                    rsvpSwitchVisible = View.GONE;
                 }
 
                 if (eventIndex < nextChronologicalEventIndex && snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).getValue() != null) {
-                    reviewRatingBar.setVisibility(View.VISIBLE);
-                    reviewEditText.setVisibility(View.VISIBLE);
-                    reviewEventButton.setVisibility(View.VISIBLE);
+                    reviewRatingBarVisible = View.VISIBLE;
+                    reviewEditTextVisible = View.VISIBLE;
+                    reviewEventButtonVisible = View.VISIBLE;
                     if (snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("rating").getValue() == null) {
-                        reviewRatingBar.setRating(0);
+                        reviewRatingBarRating = 0;
                     } else {
-                        reviewRatingBar.setRating(snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("rating").getValue(Float.class));
+                        reviewRatingBarRating = snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("rating").getValue(Float.class);
                     }
                     if (snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").getValue() == "") {
-                        reviewEditText.setHint("Write a review here!");
+                        reviewEditTextText = "Write a review here!";
                     } else {
-                        reviewEditText.setText(snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").getValue(String.class));
+                        reviewEditTextText = snapshot.child(eventNames.get(eventIndex)).child("attendees").child(currentUser).child("review").getValue(String.class);
                     }
                 } else {
-                    reviewRatingBar.setVisibility(View.GONE);
-                    reviewEditText.setVisibility(View.GONE);
-                    reviewEventButton.setVisibility(View.GONE);
+                    reviewRatingBarVisible = View.GONE;
+                    reviewEditTextVisible = View.GONE;
+                    reviewEventButtonVisible = View.GONE;
                 }
+
+                // all UI changes relevant to this anonymous function here
+                attendSwitch.setChecked(attendSwitchState);
+                rsvpSwitch.setChecked(rsvpSwitchState);
+                attendSwitch.setText(attendSwitchText);
+                attendSwitch.setVisibility(attendSwitchVisible);
+                rsvpSwitch.setVisibility(rsvpSwitchVisible);
+                reviewRatingBar.setVisibility(reviewRatingBarVisible);
+                reviewEditText.setVisibility(reviewEditTextVisible);
+                reviewEventButton.setVisibility(reviewEventButtonVisible);
+                reviewRatingBar.setRating(reviewRatingBarRating);
+                reviewEditText.setHint(reviewEditTextText);
+
+                // all remaining UI changes here
+                eventName.setText(eventNameText);
+                eventDepartment.setText(eventDepartmentText);
+                eventLocation.setText(eventLocationText);
+                eventDateTime.setText(eventDateTimeText);
+                eventDescription.setText(eventDescriptionText);
+                leftButton.setVisibility(leftButtonVisible);
+                rightButton.setVisibility(rightButtonVisible);
             }
 
             @Override

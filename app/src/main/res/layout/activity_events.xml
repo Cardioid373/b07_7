@@ -87,7 +87,7 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/attendSwitch"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:background="@color/purple_500"
@@ -105,7 +105,7 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/rsvpSwitch"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:background="@color/purple_500"
@@ -149,10 +149,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
+        android:progressBackgroundTint="#d3d3d3"
+        android:progressTint="?android:attr/colorPressedHighlight"
         android:scaleX="0.87"
         android:scaleY="0.87"
-        android:progressBackgroundTint="#d3d3d3"
-        android:progressTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
