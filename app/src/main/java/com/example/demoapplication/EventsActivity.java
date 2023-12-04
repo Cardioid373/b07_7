@@ -364,7 +364,7 @@ public class EventsActivity extends AppCompatActivity {
                 reviewEditText.setVisibility(reviewEditTextVisible);
                 reviewEventButton.setVisibility(reviewEventButtonVisible);
                 reviewRatingBar.setRating(reviewRatingBarRating);
-                reviewEditText.setHint(reviewEditTextText);
+                reviewEditText.setText(reviewEditTextText);
 
                 // all remaining UI changes here
                 eventName.setText(eventNameText);
