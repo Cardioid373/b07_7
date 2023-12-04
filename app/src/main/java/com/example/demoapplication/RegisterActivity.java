@@ -26,10 +26,10 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_activity);
+        setContentView(R.layout.activity_register);
         databaseReferenceUser = FirebaseDatabase.getInstance().getReference("users");
         databaseReferenceAdmin = FirebaseDatabase.getInstance().getReference("admins");
-        EditText getEmail = findViewById(R.id.emailEditText);
+        EditText getEmail = findViewById(R.id.nameEditText);
         EditText getPassword = findViewById(R.id.passwordEditText);
         Button btnRegister = findViewById(R.id.loginButton);
         Button btnBackToLogin = findViewById(R.id.goBackButton);
