@@ -68,6 +68,8 @@ public class CreateEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createEvent();
+                startActivity(new Intent(CreateEventActivity.this, AdminHomeActivity.class));
+                finish();
             }
         });
 
