@@ -13,4 +13,5 @@
     <color name="buttonC">#c595fe</color>
     <color name="buttonTextC">#FF000000</color>
     <color name="textViewTextC">#FF000000</color>
+    <color name="selectedButtonColor">#FFA500</color>
 </resources>

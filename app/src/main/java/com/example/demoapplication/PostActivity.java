@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class PostActivity extends AppCompatActivity {
+    private Button selectedButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +26,12 @@ public class PostActivity extends AppCompatActivity {
         Button statsSpecialistButton = findViewById(R.id.StatsSpecialistButton);
         Button postBackButton = findViewById(R.id.postBackButton);
 
-        csMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.CSq1), "csMajor"));
-        csMinorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.CSq1), "csMinor"));
-        mathMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathMajor"));
-        mathSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Mathq1), "mathSpecialist"));
-        statsMajorButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsMajor"));
-        statsSpecialistButton.setOnClickListener(view -> navigateToFragment(new admission_check(), getString(R.string.Statsq1), "statsSpecialist"));
+        csMajorButton.setOnClickListener(view -> navigateToFragment(csMajorButton, new admission_check(), getString(R.string.CSq1), "csMajor"));
+        csMinorButton.setOnClickListener(view -> navigateToFragment(csMinorButton, new admission_check(), getString(R.string.CSq1), "csMinor"));
+        mathMajorButton.setOnClickListener(view -> navigateToFragment(mathMajorButton, new admission_check(), getString(R.string.Mathq1), "mathMajor"));
+        mathSpecialistButton.setOnClickListener(view -> navigateToFragment(mathSpecialistButton, new admission_check(), getString(R.string.Mathq1), "mathSpecialist"));
+        statsMajorButton.setOnClickListener(view -> navigateToFragment(statsMajorButton, new admission_check(), getString(R.string.Statsq1), "statsMajor"));
+        statsSpecialistButton.setOnClickListener(view -> navigateToFragment(statsSpecialistButton, new admission_check(), getString(R.string.Statsq1), "statsSpecialist"));
 
         postBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +43,14 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-    private void navigateToFragment(Fragment fragment, String questionText, String programChosen) {
+    private void navigateToFragment(Button button, Fragment fragment, String questionText, String programChosen) {
+
+        if (selectedButton != null) {
+            selectedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.buttonC)); // Reset previous button
+        }
+        selectedButton = button;
+        selectedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.selectedButtonColor)); // Set color for the selected button
+
 
         // pass info to admission_check fragment
         Bundle bundle = new Bundle();
