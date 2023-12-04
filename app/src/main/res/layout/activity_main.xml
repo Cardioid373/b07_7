@@ -27,7 +27,7 @@
         android:id="@+id/nameEditText"
         android:layout_width="370dp"
         android:layout_height="60dp"
-        android:hint="Email"
+        android:hint="Username"
         android:inputType="textEmailAddress" />
 
     <Space
