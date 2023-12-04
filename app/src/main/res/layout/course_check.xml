@@ -24,21 +24,14 @@
             android:layout_height="58dp"
             android:orientation="horizontal">
 
-            <Button
-                style="@style/buttonStyle"
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/yesOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/YesButton" />
+                android:text="@string/YesButton"
+                android:textSize="20sp" />
 
-            <Button
-                style="@style/buttonStyle"
-                android:id="@+id/noOne"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/NoButton" />
         </LinearLayout>
 
         <TextView
@@ -53,21 +46,14 @@
             android:layout_height="58dp"
             android:orientation="horizontal">
 
-            <Button
-                style="@style/buttonStyle"
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/yesTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="58dp"
                 android:layout_weight="1"
-                android:text="@string/YesButton" />
+                android:text="@string/YesButton"
+                android:textSize="20sp" />
 
-            <Button
-                style="@style/buttonStyle"
-                android:id="@+id/noTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="58dp"
-                android:layout_weight="1"
-                android:text="@string/NoButton" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,7 +62,6 @@
             android:orientation="horizontal">
 
             <Button
-                style="@style/buttonStyle"
                 android:id="@+id/postEnterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
