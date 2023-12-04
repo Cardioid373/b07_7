@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 public class course_check extends Fragment {
@@ -32,6 +33,11 @@ public class course_check extends Fragment {
         Button yesButton2 = view.findViewById(R.id.yesTwo);
         Button noButton2 = view.findViewById(R.id.noTwo);
         Button enterButton = view.findViewById(R.id.postEnterButton);
+
+        // Set no buttons as "selected" by default
+        noButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+        noButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+
 
         // HANDLE WHICH QUESTIONS ARE DISPLAYED FOR CHOSEN PROGRAM
         if(programChosen.equals("mathMajor")){
@@ -82,10 +88,30 @@ public class course_check extends Fragment {
         }
 
         // HANDLE YES, NO AND ENTER BUTTONS TO QUESTIONS
-        yesButton.setOnClickListener(v -> answer1 = true);
-        noButton.setOnClickListener(v -> answer1 = false);
-        yesButton2.setOnClickListener(v -> answer2 = true);
-        noButton2.setOnClickListener(v -> answer2 = false);
+        yesButton.setOnClickListener(v -> {
+            answer1 = true;
+            yesButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            noButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
+        noButton.setOnClickListener(v -> {
+            answer1 = false;
+            noButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            yesButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
+        yesButton2.setOnClickListener(v -> {
+            answer2 = true;
+            yesButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            noButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
+        noButton2.setOnClickListener(v -> {
+            answer2 = false;
+            noButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            yesButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
 
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
