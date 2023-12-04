@@ -1,5 +1,6 @@
 package com.example.demoapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,14 +9,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 public class course_check extends Fragment {
     /*This fragment will present the user with questions regarding the course and
     course grade requirements of their selected program*/
-    protected boolean switchOneClicked = false;
-    protected boolean switchTwoClicked = false;
+    protected boolean answer1 = false;
+    protected boolean answer2 = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,9 +29,16 @@ public class course_check extends Fragment {
         // Buttons and Textviews
         TextView firstQuestion = view.findViewById(R.id.quest);
         TextView secondQuestion = view.findViewById(R.id.quest2);
-        SwitchCompat yesButton = view.findViewById(R.id.yesOne);
-        SwitchCompat yesButton2 = view.findViewById(R.id.yesTwo);
+        Button yesButton = view.findViewById(R.id.yesOne);
+        Button noButton = view.findViewById(R.id.noOne);
+        Button yesButton2 = view.findViewById(R.id.yesTwo);
+        Button noButton2 = view.findViewById(R.id.noTwo);
         Button enterButton = view.findViewById(R.id.postEnterButton);
+
+        // Set no buttons as "selected" by default
+        noButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+        noButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+
 
         // HANDLE WHICH QUESTIONS ARE DISPLAYED FOR CHOSEN PROGRAM
         if(programChosen.equals("mathMajor")){
@@ -40,7 +48,7 @@ public class course_check extends Fragment {
             }
             else {
                 firstQuestion.setText(R.string.MathNotAdmittedRec1);
-                hideQuestion(secondQuestion, yesButton2);
+                hideQuestion(secondQuestion, yesButton2, noButton2);
             }
         }
         else if(programChosen.equals("mathSpecialist")) {
@@ -50,7 +58,7 @@ public class course_check extends Fragment {
             }
             else {
                 firstQuestion.setText(R.string.MathNotAdmittedRec1);
-                hideQuestion(secondQuestion, yesButton2);
+                hideQuestion(secondQuestion, yesButton2, noButton2);
             }
         }
         else if(programChosen.equals("statsMajor")) {
@@ -60,7 +68,7 @@ public class course_check extends Fragment {
             else {
                 firstQuestion.setText(R.string.StatsMajorNotAdmittedReq1);
             }
-            hideQuestion(secondQuestion, yesButton2);
+            hideQuestion(secondQuestion, yesButton2, noButton2);
         }
         else if(programChosen.equals("statsSpecialist")) {
             if(admitted) {
@@ -69,7 +77,7 @@ public class course_check extends Fragment {
             else {
                 firstQuestion.setText(R.string.StatsSpecialistNotAdmittedReq1);
             }
-            hideQuestion(secondQuestion, yesButton2);
+            hideQuestion(secondQuestion, yesButton2, noButton2);
         }
         else if(programChosen.equals("csMajor")) {
             firstQuestion.setText(R.string.CSMajorReq1);
@@ -77,17 +85,39 @@ public class course_check extends Fragment {
         }
         else if(programChosen.equals("csMinor")) {
             firstQuestion.setText(R.string.CSMinorReq1);
-            hideQuestion(secondQuestion, yesButton2);
+            hideQuestion(secondQuestion, yesButton2, noButton2);
         }
 
         // HANDLE YES, NO AND ENTER BUTTONS TO QUESTIONS
-        yesButton.setOnCheckedChangeListener((buttonView, isChecked) -> switchOneClicked =  !switchOneClicked);
-        yesButton2.setOnCheckedChangeListener((buttonView, isChecked) -> switchTwoClicked = !switchTwoClicked);
+        yesButton.setOnClickListener(v -> {
+            answer1 = true;
+            yesButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            noButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
+        noButton.setOnClickListener(v -> {
+            answer1 = false;
+            noButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            yesButton.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
+        yesButton2.setOnClickListener(v -> {
+            answer2 = true;
+            yesButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            noButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
+        noButton2.setOnClickListener(v -> {
+            answer2 = false;
+            noButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.selectedButtonColor));
+            yesButton2.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.buttonC));
+        });
+
 
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!switchOneClicked || !switchTwoClicked) {
+                if(!answer1 || !answer2) {
                     firstQuestion.setText(R.string.postReqNotMet);
                 }
                 else {
@@ -95,9 +125,10 @@ public class course_check extends Fragment {
                 }
 
                 // hide everything except the message
-                hideQuestion(secondQuestion, yesButton2);
+                hideQuestion(secondQuestion, yesButton2, noButton2);
                 enterButton.setVisibility(View.GONE);
                 yesButton.setVisibility(View.GONE);
+                noButton.setVisibility(View.GONE);
             }
         });
 
@@ -106,10 +137,11 @@ public class course_check extends Fragment {
 
 
     // This hides the buttons for the second question if there's only one POST requirement
-    private void hideQuestion(TextView secondQuestion, Button yesButton2) {
+    private void hideQuestion(TextView secondQuestion, Button yesButton2, Button noButton2) {
         secondQuestion.setVisibility(View.GONE);
         yesButton2.setVisibility(View.GONE);
-        switchTwoClicked = true;
+        noButton2.setVisibility(View.GONE);
+        answer2 = true;
     }
 
 
